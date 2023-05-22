@@ -17,7 +17,7 @@ $og_keywords = "Minecraft, Mod, Plugin, Map, Pl3x, Pl3xMap, Dynamic, Live, LiveM
 <head>
     <meta charset="utf-8">
 
-    <meta name="darkreader-lock">
+    <meta name="darkreader-lock" content="true">
 
     <title><?=$og_title?></title>
 
@@ -794,9 +794,8 @@ html #mode .dark {
                     <section class="welcome">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Introduction
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">Introduction</h2>
+                                <hr>
                                 <div class="row">
                                     <div class="col-md-12 full">
                                         <div class="intro1">
@@ -837,9 +836,8 @@ html #mode .dark {
                     <section id="getting-started" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Getting Started
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">Getting Started</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
@@ -847,42 +845,42 @@ html #mode .dark {
                                 <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                                 <h3>Bootstrap Grid System</h3>
                                 <pre class="brush: html; highlight: [2,4]">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    $lt;div class="container">
+                                        $lt;div class="row">
+                                            $lt;div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            </div>
-                                        </div>
-                                    </div>
+                                            $lt;/div>
+                                        $lt;/div>
+                                    $lt;/div>
                                 </pre>
                                 <p>Our you can use the grid system with 2 columns like this;</p>
                                 <pre class="brush: html">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    $lt;div class="container">
+                                        $lt;div class="row">
+                                            $lt;div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            $lt;/div>
+                                            $lt;div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            </div>
-                                        </div>
-                                    </div>
+                                            $lt;/div>
+                                        $lt;/div>
+                                    $lt;/div>
                                 </pre>
                                 <p>Our you can use the grid system with 3 columns like this;</p>
                                 <pre class="brush: html">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    $lt;div class="container">
+                                        $lt;div class="row">
+                                            $lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            $lt;/div>
+                                            $lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            $lt;/div>
+                                            $lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            </div>
-                                        </div>
-                                    </div>
+                                            $lt;/div>
+                                        $lt;/div>
+                                    $lt;/div>
                                 </pre>
                             </div>
                         </div>
@@ -891,9 +889,8 @@ html #mode .dark {
                     <section id="how-to-install" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">How to Install WordPress
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">How to Install WordPress</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="intro2 clearfix">
@@ -918,9 +915,8 @@ html #mode .dark {
                     <section id="how-to-theme" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">How to Install Theme
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">How to Install Theme</h2>
+                                <hr>
                             </div>
                         </div>
                         <h3>Upload via WordPress Admin</h3>
@@ -948,9 +944,8 @@ html #mode .dark {
                     <section id="necessary-plugins" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Necessary Plugins
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">Necessary Plugins</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
@@ -981,9 +976,8 @@ html #mode .dark {
                     <section id="creating-blog-pages" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Creating Blog Pages
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">Creating Blog Pages</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
@@ -1024,9 +1018,8 @@ html #mode .dark {
                     <section id="revolution-slider" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">How to Install Revolution Slider
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">How to Install Revolution Slider</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
@@ -1058,9 +1051,8 @@ html #mode .dark {
                     <section id="how-to-use-optional-panel" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">How to Use Option Panel
-                                    <hr id="how-to-use-optional-panel_general-options">
-                                </h2>
+                                <h2 class="dark-text">How to Use Option Panel</h2>
+                                <hr id="how-to-use-optional-panel_general-options">
                             </div>
                         </div>
                         <div class="row">
@@ -1137,9 +1129,8 @@ html #mode .dark {
                     <section id="support-desk" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Support Desk
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">Support Desk</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
@@ -1176,9 +1167,8 @@ html #mode .dark {
                     <section id="files-and-sources" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Files & Sources
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">Files & Sources</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
@@ -1225,9 +1215,8 @@ html #mode .dark {
                     <section id="version-history-changelog" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Version History (Changelog)
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">Version History (Changelog)</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
@@ -1289,9 +1278,8 @@ Version 3.8.2 - May 7th, 2015
                     <section id="copyright-and-license" class="section">
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Copyright and license
-                                    <hr>
-                                </h2>
+                                <h2 class="dark-text">Copyright and license</h2>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
