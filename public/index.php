@@ -641,6 +641,12 @@ Version 3.8.2 - May 7th, 2015
 
     </div>
 
+    <div style="border:0;text-align:center;padding-bottom:50px;">
+        <img src="/images/valid_html5.png" title="Valid HTML 5" alt="Valid HTML 5" style="border:0;width:80px;height:15px">
+        <img src="/images/valid_css3.png" title="Valid CSS 3" alt="Valid CSS 3" style="border:0;width:80px;height:15px">
+        <img src="/images/valid_svg11.png" title="Valid SVG 1.1" alt="Valid SVG 1.1" style="border:0;width:80px;height:15px">
+    </div>
+
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/wow.js"></script>
