@@ -1,24 +1,6 @@
-/**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
- *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
- * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
- *
- * @version
- * 3.0.83 (July 02 2010)
- * 
- * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
- *
- * @license
- * Dual licensed under the MIT and GPL licenses.
- */
 ;(function()
 {
-	// CommonJS
 	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
-
 	function Brush()
 	{
 		var funcs	=	'abs acos acosh addcslashes addslashes ' +
@@ -55,34 +37,26 @@
 						'stripos stripslashes stristr strlen strnatcasecmp strnatcmp strncasecmp strncmp strpbrk '+
 						'strpos strptime strrchr strrev strripos strrpos strspn strstr strtok strtolower strtotime '+
 						'strtoupper strtr strval substr substr_compare';
-
 		var keywords =	'abstract and array as break case catch cfunction class clone const continue declare default die do ' +
 						'else elseif enddeclare endfor endforeach endif endswitch endwhile extends final for foreach ' +
 						'function include include_once global goto if implements interface instanceof namespace new ' +
 						'old_function or private protected public return require require_once static switch ' +
 						'throw try use var while xor ';
-		
 		var constants	= '__FILE__ __LINE__ __METHOD__ __FUNCTION__ __CLASS__';
-
 		this.regexList = [
-			{ regex: SyntaxHighlighter.regexLib.singleLineCComments,	css: 'comments' },			// one line comments
-			{ regex: SyntaxHighlighter.regexLib.multiLineCComments,		css: 'comments' },			// multiline comments
-			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,		css: 'string' },			// double quoted strings
-			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,		css: 'string' },			// single quoted strings
-			{ regex: /\$\w+/g,											css: 'variable' },			// variables
-			{ regex: new RegExp(this.getKeywords(funcs), 'gmi'),		css: 'functions' },			// common functions
-			{ regex: new RegExp(this.getKeywords(constants), 'gmi'),	css: 'constants' },			// constants
-			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),		css: 'keyword' }			// keyword
+			{ regex: SyntaxHighlighter.regexLib.singleLineCComments,	css: 'comments' },
+			{ regex: SyntaxHighlighter.regexLib.multiLineCComments,		css: 'comments' },
+			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,		css: 'string' },
+			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,		css: 'string' },
+			{ regex: /\$\w+/g,											css: 'variable' },
+			{ regex: new RegExp(this.getKeywords(funcs), 'gmi'),		css: 'functions' },
+			{ regex: new RegExp(this.getKeywords(constants), 'gmi'),	css: 'constants' },
+			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),		css: 'keyword' }
 			];
-
 		this.forHtmlScript(SyntaxHighlighter.regexLib.phpScriptTags);
 	};
-
 	Brush.prototype	= new SyntaxHighlighter.Highlighter();
 	Brush.aliases	= ['php'];
-
 	SyntaxHighlighter.brushes.Php = Brush;
-
-	// CommonJS
 	typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
 })();

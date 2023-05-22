@@ -1,24 +1,6 @@
-/**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
- *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
- * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
- *
- * @version
- * 3.0.83 (July 02 2010)
- * 
- * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
- *
- * @license
- * Dual licensed under the MIT and GPL licenses.
- */
 ;(function()
 {
-	// CommonJS
 	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
-
 	function Brush()
 	{
 		var keywords =	'if fi then elif else for do done until while break continue case function return in eq ne ge le';
@@ -37,23 +19,18 @@
 						'uname unexpand uniq units unset unshar useradd usermod users uuencode uudecode v vdir ' +
 						'vi watch wc whereis which who whoami Wget xargs yes'
 						;
-
 		this.regexList = [
 			{ regex: /^#!.*$/gm,											css: 'preprocessor bold' },
 			{ regex: /\/[\w-\/]+/gm,										css: 'plain' },
-			{ regex: SyntaxHighlighter.regexLib.singleLinePerlComments,		css: 'comments' },		// one line comments
-			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,			css: 'string' },		// double quoted strings
-			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,			css: 'string' },		// single quoted strings
-			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),			css: 'keyword' },		// keywords
-			{ regex: new RegExp(this.getKeywords(commands), 'gm'),			css: 'functions' }		// commands
+			{ regex: SyntaxHighlighter.regexLib.singleLinePerlComments,		css: 'comments' },
+			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,			css: 'string' },
+			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,			css: 'string' },
+			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),			css: 'keyword' },
+			{ regex: new RegExp(this.getKeywords(commands), 'gm'),			css: 'functions' }
 			];
 	}
-
 	Brush.prototype	= new SyntaxHighlighter.Highlighter();
 	Brush.aliases	= ['bash', 'shell'];
-
 	SyntaxHighlighter.brushes.Bash = Brush;
-
-	// CommonJS
 	typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
 })();

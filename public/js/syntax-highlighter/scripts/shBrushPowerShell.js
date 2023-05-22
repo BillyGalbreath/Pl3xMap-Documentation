@@ -1,29 +1,8 @@
-/**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
- *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
- * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
- *
- * @version
- * 3.0.83 (July 02 2010)
- * 
- * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
- *
- * @license
- * Dual licensed under the MIT and GPL licenses.
- */
 ;(function()
 {
-	// CommonJS
 	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
-
 	function Brush()
 	{
-		// Contributes by B.v.Zanten, Getronics
-		// http://confluence.atlassian.com/display/CONFEXT/New+Code+Macro
-
 		var keywords = 'Add-Content Add-History Add-Member Add-PSSnapin Clear(-Content)? Clear-Item ' +
 					'Clear-ItemProperty Clear-Variable Compare-Object ConvertFrom-SecureString Convert-Path ' +
 					'ConvertTo-Html ConvertTo-SecureString Copy(-Item)? Copy-ItemProperty Export-Alias ' +
@@ -52,23 +31,18 @@
 					'spps spsv sv tee cat cd cp h history kill lp ls ' +
 					'mount mv popd ps pushd pwd r rm rmdir echo cls chdir del dir ' +
 					'erase rd ren type % \\?';
-
 		this.regexList = [
-			{ regex: /#.*$/gm,										css: 'comments' },  // one line comments
-			{ regex: /\$[a-zA-Z0-9]+\b/g,							css: 'value'   },   // variables $Computer1
-			{ regex: /\-[a-zA-Z]+\b/g,								css: 'keyword' },   // Operators    -not  -and  -eq
-			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,	css: 'string' },    // strings
-			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,	css: 'string' },    // strings
+			{ regex: /#.*$/gm,										css: 'comments' },
+			{ regex: /\$[a-zA-Z0-9]+\b/g,							css: 'value'   },
+			{ regex: /\-[a-zA-Z]+\b/g,								css: 'keyword' },
+			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,	css: 'string' },
+			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,	css: 'string' },
 			{ regex: new RegExp(this.getKeywords(keywords), 'gmi'),	css: 'keyword' },
 			{ regex: new RegExp(this.getKeywords(alias), 'gmi'),	css: 'keyword' }
 		];
 	};
-
 	Brush.prototype	= new SyntaxHighlighter.Highlighter();
 	Brush.aliases	= ['powershell', 'ps'];
-
 	SyntaxHighlighter.brushes.PowerShell = Brush;
-
-	// CommonJS
 	typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
 })();

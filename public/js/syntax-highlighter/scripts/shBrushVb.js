@@ -1,24 +1,6 @@
-/**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
- *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
- * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
- *
- * @version
- * 3.0.83 (July 02 2010)
- * 
- * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
- *
- * @license
- * Dual licensed under the MIT and GPL licenses.
- */
 ;(function()
 {
-	// CommonJS
 	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
-
 	function Brush()
 	{
 		var keywords =	'AddHandler AddressOf AndAlso Alias And Ansi As Assembly Auto ' +
@@ -35,22 +17,16 @@
 						'Return Select Set Shadows Shared Short Single Static Step Stop String ' +
 						'Structure Sub SyncLock Then Throw To True Try TypeOf Unicode Until ' +
 						'Variant When While With WithEvents WriteOnly Xor';
-
 		this.regexList = [
-			{ regex: /'.*$/gm,										css: 'comments' },			// one line comments
-			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,	css: 'string' },			// strings
-			{ regex: /^\s*#.*$/gm,									css: 'preprocessor' },		// preprocessor tags like #region and #endregion
-			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),	css: 'keyword' }			// vb keyword
+			{ regex: /'.*$/gm,										css: 'comments' },
+			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,	css: 'string' },
+			{ regex: /^\s*#.*$/gm,									css: 'preprocessor' },
+			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),	css: 'keyword' }
 			];
-
 		this.forHtmlScript(SyntaxHighlighter.regexLib.aspScriptTags);
 	};
-
 	Brush.prototype	= new SyntaxHighlighter.Highlighter();
 	Brush.aliases	= ['vb', 'vbnet'];
-
 	SyntaxHighlighter.brushes.Vb = Brush;
-
-	// CommonJS
 	typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
