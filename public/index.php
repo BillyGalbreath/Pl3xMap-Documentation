@@ -2498,12 +2498,12 @@ label {
   font-weight: bold;
 }
 input[type="search"] {
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
-  margin-top: 1px \9;
+  margin-top: 1px;
   line-height: normal;
 }
 input[type="file"] {
@@ -2563,7 +2563,7 @@ textarea.form-control {
 input[type="search"] {
   appearance: none;
 }
-@media screen and (min-device-pixel-ratio: 0) {
+@media screen {
   input[type="date"],
   input[type="time"],
   input[type="datetime-local"],
@@ -2614,7 +2614,7 @@ input[type="search"] {
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
   position: absolute;
-  margin-top: 4px \9;
+  margin-top: 4px;
   margin-left: -20px;
 }
 .radio + .radio,
@@ -2990,8 +2990,7 @@ select[multiple].form-group-lg .form-control {
 fieldset[disabled] .btn {
   pointer-events: none;
   cursor: not-allowed;
-  filter: alpha(opacity=65);
-          box-shadow: none;
+  box-shadow: none;
   opacity: .65;
 }
 .btn-default {
@@ -3439,7 +3438,6 @@ tbody.collapse.in {
   cursor: not-allowed;
   background-color: transparent;
   background-image: none;
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .open > .dropdown-menu {
   display: block;
@@ -4064,7 +4062,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-fixed-bottom .navbar-collapse {
   max-height: 340px;
 }
-@media (max-device-width: 480px) and (orientation: landscape) {
+@media (max-width: 480px) and (orientation: landscape) {
   .navbar-fixed-top .navbar-collapse,
   .navbar-fixed-bottom .navbar-collapse {
     max-height: 200px;
@@ -5002,7 +5000,6 @@ a.thumbnail.active {
 .media,
 .media-body {
   overflow: hidden;
-  zoom: 1;
 }
 .media-body {
   width: 10000px;
@@ -5600,7 +5597,6 @@ a.list-group-item-danger.active:focus {
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #fff;
-  filter: alpha(opacity=20);
   opacity: .2;
 }
 .close:hover,
@@ -5608,7 +5604,6 @@ a.list-group-item-danger.active:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
-  filter: alpha(opacity=50);
   opacity: .5;
 }
 button.close {
@@ -5631,7 +5626,7 @@ button.close {
   display: none;
   overflow: hidden;
   outline: 0;
-  background-color: rgba(255,355,255,0.9);
+  background-color: rgba(255,255,255,0.9);
 }
 .modal.fade .modal-dialog {
           transition:         transform .3s ease-out;
@@ -5667,11 +5662,9 @@ button.close {
   background-color: #000;
 }
 .modal-backdrop.fade {
-  filter: alpha(opacity=0);
   opacity: 0;
 }
 .modal-backdrop.in {
-  filter: alpha(opacity=50);
   opacity: .5;
 }
 .modal-header {
@@ -5737,11 +5730,9 @@ button.close {
   font-weight: normal;
   line-height: 1.4;
   visibility: visible;
-  filter: alpha(opacity=0);
   opacity: 0;
 }
 .tooltip.in {
-  filter: alpha(opacity=90);
   opacity: .9;
 }
 .tooltip.top {
@@ -5970,11 +5961,11 @@ button.close {
 .carousel-inner > .item > a > img {
   line-height: 1;
 }
-@media all and (transform-3d) {
+@media all {
   .carousel-inner > .item {
-            transition:         transform .6s ease-in-out;
-            backface-visibility: hidden;
-            perspective: 1000;
+    transition:         transform .6s ease-in-out;
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
   .carousel-inner > .item.next,
   .carousel-inner > .item.active.right {
@@ -6033,26 +6024,22 @@ button.close {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-  filter: alpha(opacity=50);
   opacity: .5;
 }
 .carousel-control.left {
   background-image:         linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
   background-repeat: repeat-x;
 }
 .carousel-control.right {
   right: 0;
   left: auto;
   background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
   background-repeat: repeat-x;
 }
 .carousel-control:hover,
 .carousel-control:focus {
   color: #fff;
   text-decoration: none;
-  filter: alpha(opacity=90);
   outline: 0;
   opacity: .9;
 }
@@ -6107,7 +6094,7 @@ button.close {
   margin: 1px;
   text-indent: -999px;
   cursor: pointer;
-  background-color: #000 \9;
+  background-color: #000;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #fff;
   border-radius: 10px;
