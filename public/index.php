@@ -3,7 +3,7 @@ $origin = "https://map2.pl3x.net";
 
 $og_title = "Pl3xMap";
 $og_url = "https://modrinth.com/mod/pl3xmap";
-$og_image = $origin . "/images/og_large.webp";
+$og_image = $origin . "/images/og_large.png";
 $og_desc = "Pl3xMap is a minimalistic and lightweight world map viewer for Minecraft servers using the vanilla Minecraft rendering style";
 $og_keywords = "Minecraft, Mod, Plugin, Map, Pl3x, Pl3xMap, Dynamic, Live, LiveMap, BlueMap, Dynmap, SquareMap, Bukkit, BukkitMC, Spigot, SpigotMC, Paper, PaperMC, Purpur, PurpurMC, Fabric, FabricMC, Forge, ForgeMC, Quilt, QuiltMC";
 
@@ -11,7 +11,7 @@ function setOg($id, $title, $desc) {
     global $origin, $og_title, $og_url, $og_image, $og_desc;
     $og_title .= " - " . $title;
     $og_url = $origin . "/" . $id;
-    $og_image = $origin . "/images/og_small.webp";
+    $og_image = $origin . "/images/og_small.png";
     $og_desc = $desc;
 }
 
