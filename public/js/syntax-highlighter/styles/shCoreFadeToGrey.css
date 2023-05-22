@@ -311,7 +311,7 @@
 .syntaxhighlighter .script {
   font-weight: bold !important;
   color: #d01d33 !important;
-  background-color: none !important;
+  background-color: transparent !important;
 }
 .syntaxhighlighter .color1, .syntaxhighlighter .color1 a {
   color: #ffc074 !important;
