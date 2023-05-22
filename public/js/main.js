@@ -70,22 +70,4 @@ $(document).ready(function () {
         }, 500)
     })
 
-    /* ==============================================
-    VIDEO FIX -->
-    =============================================== */
-
-    $(document).ready(function() {
-        // Target your .container, .wrapper, .post, etc.
-        $(".media").fitVids()
-    })
-
-    /* ==============================================
-    VIDEO FIX -->
-    =============================================== */
-
-    $('.docs-sidebar>nav>li>a').click(function() {
-        $('.docs-sidebar>nav>li').removeClass('active')
-        $(this).parent().addClass('active')
-    })
-
 })(jQuery);

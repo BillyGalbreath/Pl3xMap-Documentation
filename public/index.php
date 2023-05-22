@@ -909,7 +909,7 @@ html #mode .dark {
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/snFzbPm_RUE?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>
+                                    <!--<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/snFzbPm_RUE?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>-->
                                 </div>
                             </div>
                         </div>
@@ -934,12 +934,12 @@ html #mode .dark {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yQnQyI5WlKs?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>
+                                    <!--<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yQnQyI5WlKs?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>-->
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/z0kEVwJB_go?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>
+                                    <!--<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/z0kEVwJB_go?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>-->
                                 </div>
                             </div>
                         </div>
@@ -1312,7 +1312,6 @@ Version 3.8.2 - May 7th, 2015
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
     <script type="text/javascript" src="/js/wow.js"></script>
     <script type="text/javascript" src="/js/jquery.prettyPhoto.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
