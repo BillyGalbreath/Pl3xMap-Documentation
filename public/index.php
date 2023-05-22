@@ -21,7 +21,7 @@ $og_keywords = "Minecraft, Mod, Plugin, Map, Pl3x, Pl3xMap, Dynamic, Live, LiveM
 
     <title><?=$og_title?></title>
 
-    <meta name="author" content="BillyGalbreath">
+    <meta name="author" content="William Blake Galbreath">
     <meta name="description" content="<?=$og_desc?>">
     <meta name="keywords" content="<?=$og_keywords?>">
 
