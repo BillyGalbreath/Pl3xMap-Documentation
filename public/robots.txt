@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://map2.pl3x.net/sitemap.xml
