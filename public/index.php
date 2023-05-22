@@ -258,42 +258,42 @@ body,h1,h2,h3,p{letter-spacing:0;font-weight:400}img.aligncenter,img.alignleft,i
                                 <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                                 <h3>Bootstrap Grid System</h3>
                                 <pre class="brush: html; highlight: [2,4]">
-                                    $lt;div class="container">
-                                        $lt;div class="row">
-                                            $lt;div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    &lt;div class="container">
+                                        &lt;div class="row">
+                                            &lt;div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            $lt;/div>
-                                        $lt;/div>
-                                    $lt;/div>
+                                            &lt;/div>
+                                        &lt;/div>
+                                    &lt;/div>
                                 </pre>
                                 <p>Our you can use the grid system with 2 columns like this;</p>
                                 <pre class="brush: html">
-                                    $lt;div class="container">
-                                        $lt;div class="row">
-                                            $lt;div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    &lt;div class="container">
+                                        &lt;div class="row">
+                                            &lt;div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            $lt;/div>
-                                            $lt;div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            &lt;/div>
+                                            &lt;div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            $lt;/div>
-                                        $lt;/div>
-                                    $lt;/div>
+                                            &lt;/div>
+                                        &lt;/div>
+                                    &lt;/div>
                                 </pre>
                                 <p>Our you can use the grid system with 3 columns like this;</p>
                                 <pre class="brush: html">
-                                    $lt;div class="container">
-                                        $lt;div class="row">
-                                            $lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    &lt;div class="container">
+                                        &lt;div class="row">
+                                            &lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            $lt;/div>
-                                            $lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            &lt;/div>
+                                            &lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            $lt;/div>
-                                            $lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            &lt;/div>
+                                            &lt;div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 YOUR CODES GOES HERE
-                                            $lt;/div>
-                                        $lt;/div>
-                                    $lt;/div>
+                                            &lt;/div>
+                                        &lt;/div>
+                                    &lt;/div>
                                 </pre>
                             </div>
                         </div>
