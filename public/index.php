@@ -4,6 +4,8 @@ if (isset($id)) {
     $id = preg_replace("/[^a-zA-Z0-9._-]+/", "", str_replace("/", "_", $id));
 }
 
+$origin = "https://map2.pl3x.net";
+
 $og_title = "Pl3xMap";
 $og_url = "https://modrinth.com/mod/pl3xmap";
 $og_image = "https://raw.githubusercontent.com/BillyGalbreath/Pl3xMap/v3/webmap/public/images/og.png";
@@ -907,7 +909,7 @@ html #mode .dark {
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/snFzbPm_RUE?origin=http://localhost" frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/snFzbPm_RUE?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -932,12 +934,12 @@ html #mode .dark {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yQnQyI5WlKs?origin=http://localhost" frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yQnQyI5WlKs?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/z0kEVwJB_go?origin=http://localhost" frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/z0kEVwJB_go?origin=<?=$origin?>" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
