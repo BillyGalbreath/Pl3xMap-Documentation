@@ -1,5 +1,5 @@
 <?php
-$origin = "https://map2.pl3x.net";
+$origin = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'];
 
 $og_title = "Pl3xMap";
 $og_url = "https://modrinth.com/mod/pl3xmap";
@@ -93,8 +93,10 @@ if (isset($id)) {
     <meta property="og:title" content="<?=$og_title?>">
     <meta property="og:description" content="<?=$og_desc?>">
     <?php if (isset($og_image)) {?><meta property="og:image" content="<?=$og_image?>"><?php } ?>
+
     <?php if ($og_large_image) {?><meta name="twitter:card" content="summary_large_image"><?php } ?>
 
+    
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -278,6 +280,17 @@ a {
     color: var(--text-bright);
     text-decoration: none;
 }
+
+.validator {
+    border: 0;
+    text-align: center;
+    padding-bottom: 50px;
+}
+.validator a img {
+    border: 0;
+    width: 80px;
+    height: 15px;
+}
     </style>
 </head>
 
@@ -421,6 +434,18 @@ a {
 
             </div>
         </div>
+    </div>
+
+    <div class="validator">
+        <a href="https://html5.validator.nu/?doc=<?=urlencode($origin)?>" target="_blank">
+            <img src="/images/valid_html5.webp" title="Valid HTML 5" alt="Valid HTML 5">
+        </a>
+        <a href="https://jigsaw.w3.org/css-validator/validator?uri=<?=urlencode($origin)?>" target="_blank">
+            <img src="/images/valid_css3.webp" title="Valid CSS 3" alt="Valid CSS 3">
+        </a>
+        <a href="https://html5.validator.nu/?doc=<?=urlencode($origin)?>" target="_blank">
+            <img src="/images/valid_svg11.webp" title="Valid SVG 1.1" alt="Valid SVG 1.1">
+        </a>
     </div>
 
 <script>
