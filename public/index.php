@@ -474,7 +474,7 @@ function check(links, id) {
   }
 }
 function goto(id) {
-  const el = document.getElementById(id)
+  const el = id ? document.getElementById(id) : undefined
   const top = (el?.offsetTop ?? 0) - offset / 2
   window.scrollTo({top: top,behavior: 'smooth'})
   document.documentElement.scrollTo({top: top,behavior: 'smooth'})
