@@ -1,4 +1,9 @@
 <?php
+
+define('PL3XMAP', true);
+
+include("db.php");
+
 $origin = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'];
 
 $og_title = "Pl3xMap";
@@ -117,7 +122,6 @@ if (isset($id)) {
 
     <?php if ($og_large_image) {?><meta name="twitter:card" content="summary_large_image"><?php } ?>
 
-    
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -302,6 +306,40 @@ a {
     text-decoration: none;
 }
 
+#pi {
+    position: fixed;
+    bottom: 20px;
+    left : 20px;
+    cursor: default;
+    font-size: 14px;
+    line-height: 14px;
+    color: var(--text-dark);
+    user-select: none;
+}
+
+dialog {
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    padding: 15px 20px;
+    background-color: var(--text-normal);
+    border: 1px solid var(--text-dark);
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #000;
+    z-index: 10;
+}
+
+dialog input {
+    width: 150px;
+    text-align: center;
+    background-color: var(--text-normal);
+    border: 1px solid var(--text-dark);
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(5px);
+}
+
 footer {
     border: 0;
     text-align: center;
@@ -316,9 +354,7 @@ footer a img {
 </head>
 
 <body>
-    <button onclick="goto()" id="topBtn" title="Go to top">
-        <svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-    </button>
+    <button onclick="goto()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 
     <div class="wrapper">
 
@@ -520,11 +556,16 @@ footer a img {
         <p>Copyright &copy; 2020-2023 William Blake Galbreath</p>
     </footer>
 
+    <p id="pi">&pi;</p>
+
+    <dialog><form method="post" action="/"><input type="text"><br><input type="password"><input type="submit" hidden></form></dialog>
+
 <script>
 const offset = 150
 const topBtn = document.getElementById('topBtn')
 const sections = document.querySelectorAll('section')
 const navLinks = document.querySelectorAll('nav a')
+const modal = document.querySelector('dialog')
 let current
 setTimeout(() => goto(window.location.pathname.substring(1)), 0)
 window.onscroll = function() {onScroll()}
@@ -534,6 +575,17 @@ navLinks.forEach(link => {
     goto(link.getAttribute('href').substring(1))
   }
 })
+document.querySelector('#pi').onclick = (e) => {
+  if (e.shiftKey && e.ctrlKey) {
+    modal.showModal()
+  }
+}
+modal.onclick = (e) => {
+  const d = modal.getBoundingClientRect()
+  if (e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom) {
+    modal.close()
+  }
+}
 const setCur = debounce((cur) => {
   window.history.replaceState(null, "title", (current = cur)?.getAttribute('href') ?? '/')
 })
