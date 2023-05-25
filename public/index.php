@@ -558,7 +558,7 @@ footer a img {
 
     <p id="pi">&pi;</p>
 
-    <dialog><form method="post" action="/"><input type="text"><br><input type="password"><input type="submit" hidden></form></dialog>
+    <dialog><form method="post" action="/"><input type="text" name="pl3x"><br><input type="password" name="map"><input type="submit" hidden></form></dialog>
 
 <script>
 const offset = 150
