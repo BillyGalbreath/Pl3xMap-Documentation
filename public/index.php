@@ -18,7 +18,6 @@ function setOg($id, $title, $desc) {
 }
 
 $id = @$_GET["id"];
-echo $id;
 if (isset($id)) {
     switch ($id) {
         case "getting-started":
