@@ -18,6 +18,7 @@ function setOg($id, $title, $desc) {
 }
 
 $id = @$_GET["id"];
+echo $id;
 if (isset($id)) {
     switch ($id) {
         case "getting-started":
@@ -26,53 +27,74 @@ if (isset($id)) {
         case "how-to-install":
             setOg($id, "How to Install", "Some short text about installation");
             break;
-        case "how-to-theme":
-            setOg($id, "How to Install Theme", "blah blah blah");
+        case "commands-and-permissions":
+            setOg($id, "Commands and Permissions", "");
             break;
-        case "necessary-plugins":
-            setOg($id, "Necessary Plugins", "");
+        case "configuration":
+            setOg($id, "Configuration", "");
             break;
-        case "creating-blog-pages":
-            setOg($id, "Creating Blog Pages", "");
+        case "configuration/config.yml":
+            setOg($id, "Configuration - config.yml", "");
             break;
-        case "revolution-slider":
-            setOg($id, "Revolution Slider", "");
+        case "configuration/colors.yml":
+            setOg($id, "Configuration - colors.yml", "");
             break;
-        case "how-to-use-optional-panel":
-            setOg($id, "How to Use Option Panel", "");
+        case "configuration/player-tracker.yml":
+            setOg($id, "Configuration - player-tracker.yml", "");
             break;
-        case "how-to-use-optional-panel/general-options":
-            setOg($id, "How to Use Option Panel - General Options", "");
+        case "configuration/locale":
+            setOg($id, "Configuration - locale/", "");
             break;
-        case "how-to-use-optional-panel/style-options":
-            setOg($id, "How to Use Option Panel - Style Options", "");
+        case "configuration/markers":
+            setOg($id, "Configuration - markers/", "");
             break;
-        case "how-to-use-optional-panel/header-options":
-            setOg($id, "How to Use Option Panel - Header Options", "");
+        case "addons-and-integrations":
+            setOg($id, "Addons and Integrations", "");
             break;
-        case "how-to-use-optional-panel/font-options":
-            setOg($id, "How to Use Option Panel - Font Options", "");
+        case "addons-and-integrations/vanishnopacket":
+            setOg($id, "Addons and Integrations - VanishNoPacket", "");
             break;
-        case "how-to-use-optional-panel/slider-options":
-            setOg($id, "How to Use Option Panel - Slider Options", "");
+        case "addons-and-integrations/chunkyborder":
+            setOg($id, "Addons and Integrations - ChunkyBorder", "");
             break;
-        case "how-to-use-optional-panel/page-options":
-            setOg($id, "How to Use Option Panel - Page Options", "");
+        case "addons-and-integrations/huskhomes":
+            setOg($id, "Addons and Integrations - HuskHomes", "");
             break;
-        case "how-to-use-optional-panel/import-export":
-            setOg($id, "How to Use Option Panel - Import & Export", "");
+        case "addons-and-integrations/pl3xmap-banners":
+            setOg($id, "Addons and Integrations - Pl3xMap-Banners", "");
             break;
-        case "support-desk":
-            setOg($id, "Support Desk", "");
+        case "addons-and-integrations/pl3xmap-claims":
+            setOg($id, "Addons and Integrations - Pl3xMap-Claims", "");
             break;
-        case "files-and-sources":
-            setOg($id, "Files & Sources", "");
+        case "addons-and-integrations/pl3xmap-mobs":
+            setOg($id, "Addons and Integrations - Pl3xMap-Mobs", "");
             break;
-        case "version-history-changelog":
-            setOg($id, "Version History (Changelog)", "");
+        case "addons-and-integrations/pl3xmap-signs":
+            setOg($id, "Addons and Integrations - Pl3xMap-Signs", "");
             break;
-        case "copyright-and-license":
-            setOg($id, "Copyright and license", "");
+        case "addons-and-integrations/pl3xmap-warps":
+            setOg($id, "Addons and Integrations - Pl3xMap-Warps", "");
+            break;
+        case "addons-and-integrations/deathspots":
+            setOg($id, "Addons and Integrations - DeathSpots", "");
+            break;
+        case "internal-external-servers":
+            setOg($id, "Internal and External Servers", "");
+            break;
+        case "world-generators":
+            setOg($id, "3rd Party World Generators", "");
+            break;
+        case "common-questions":
+            setOg($id, "Common Questions (FAQ)", "");
+            break;
+        case "developers":
+            setOg($id, "Developers", "");
+            break;
+        case "developers/maven":
+            setOg($id, "Developers - Maven Repo", "");
+            break;
+        case "developers/api":
+            setOg($id, "Developers - API", "");
             break;
     }
 }
