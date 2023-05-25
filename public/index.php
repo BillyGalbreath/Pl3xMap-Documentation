@@ -281,12 +281,12 @@ a {
     text-decoration: none;
 }
 
-.validator {
+footer {
     border: 0;
     text-align: center;
     padding-bottom: 50px;
 }
-.validator a img {
+footer a img {
     border: 0;
     width: 80px;
     height: 15px;
@@ -313,25 +313,38 @@ a {
                 <ul class="nav">
                     <li><a href="/getting-started">Getting Started</a></li>
                     <li><a href="/how-to-install">How to Install</a></li>
-                    <li><a href="/how-to-install-theme">How to Install Theme</a></li>
-                    <li><a href="/necessary-plugins">Necessary Plugins</a></li>
-                    <li><a href="/creating-blog-pages">Creating Blog Pages</a></li>
-                    <li><a href="/revolution-slider">Revolution Slider</a></li>
-                    <li><a href="/how-to-use-optional-panel">How to Use Option Panel</a>
+                    <li><a href="/commands-and-permissions">Commands and Permissions</a></li>
+                    <li><a href="/configuration">Configuration</a>
                         <ul class="nav">
-                            <li><a href="/how-to-use-optional-panel/general-options">General Options</a></li>
-                            <li><a href="/how-to-use-optional-panel/style-options">Style Options</a></li>
-                            <li><a href="/how-to-use-optional-panel/header-options">Header Options</a></li>
-                            <li><a href="/how-to-use-optional-panel/font-options">Font Options</a></li>
-                            <li><a href="/how-to-use-optional-panel/slider-options">Slider Options</a></li>
-                            <li><a href="/how-to-use-optional-panel/page-options">Page Options</a></li>
-                            <li><a href="/how-to-use-optional-panel/import-export">Import & Export</a></li>
+                            <li><a href="/configuration/config.yml">config.yml</a></li>
+                            <li><a href="/configuration/colors.yml">colors.yml</a></li>
+                            <li><a href="/configuration/player-tracker.yml">player-tracker.yml</a></li>
+                            <li><a href="/configuration/locale">locale/</a></li>
+                            <li><a href="/configuration/markers">markers/</a></li>
                         </ul>
                     </li>
-                    <li><a href="/support-desk">Support Desk</a></li>
-                    <li><a href="/files-and-sources">Files & Sources</a></li>
-                    <li><a href="/version-history-changelog">Version History (Changelog)</a></li>
-                    <li><a href="/copyright-and-license">Copyright and license</a></li>
+                    <li><a href="/addons-and-integrations">Addons and Integrations</a>
+                        <ul class="nav">
+                            <li><a href="/addons-and-integrations/vanishnopacket">VanishNoPacket</a></li>
+                            <li><a href="/addons-and-integrations/chunkyborder">ChunkyBorder</a></li>
+                            <li><a href="/addons-and-integrations/huskhomes">HuskHomes</a></li>
+                            <li><a href="/addons-and-integrations/pl3xmap-banners">Pl3xMap-Banners</a></li>
+                            <li><a href="/addons-and-integrations/pl3xmap-claims">Pl3xMap-Claims</a></li>
+                            <li><a href="/addons-and-integrations/pl3xmap-mobs">Pl3xMap-Mobs</a></li>
+                            <li><a href="/addons-and-integrations/pl3xmap-signs">Pl3xMap-Signs</a></li>
+                            <li><a href="/addons-and-integrations/pl3xmap-warps">Pl3xMap-Warps</a></li>
+                            <li><a href="/addons-and-integrations/deathspots">DeathSpots</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/internal-external-servers">Internal and External Servers</a></li>
+                    <li><a href="/world-generators">3rd Party World Generators</a></li>
+                    <li><a href="/common-questions">Common Questions (FAQ)</a></li>
+                    <li><a href="/developers">Developers</a>
+                        <ul class="nav">
+                            <li><a href="/developers/maven">Maven Repo</a></li>
+                            <li><a href="/developers/api">API</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
 
@@ -352,83 +365,118 @@ a {
                     <hr class="short">
                 </section>
 
-                <section id="how-to-install-theme">
-                    <h2>How to Install Theme</h2>
+                <section id="commands-and-permissions">
+                    <h2>Commands and Permissions</h2>
                     <hr class="short">
                 </section>
 
-                <section id="necessary-plugins">
-                    <h2>Necessary Plugins</h2>
+                <section id="configuration">
+                    <h2>Configuration</h2>
                     <hr class="short">
                 </section>
 
-                <section id="creating-blog-pages">
-                    <h2>Creating Blog Pages</h2>
+                <section id="configuration/config.yml">
+                    <h2>config.yml</h2>
                     <hr class="short">
                 </section>
 
-                <section id="revolution-slider">
-                    <h2>Revolution Slider</h2>
+                <section id="configuration/colors.yml">
+                    <h2>colors.yml</h2>
                     <hr class="short">
                 </section>
 
-                <section id="how-to-use-optional-panel">
-                    <h2>How to Use Option Panel</h2>
+                <section id="configuration/player-tracker.yml">
+                    <h2>player-tracker.yml</h2>
                     <hr class="short">
                 </section>
 
-                <section id="how-to-use-optional-panel/general-options">
-                    <h2>General Options</h2>
+                <section id="configuration/locale">
+                    <h2>locale</h2>
                     <hr class="short">
                 </section>
 
-                <section id="how-to-use-optional-panel/style-options">
-                    <h2>Style Options</h2>
+                <section id="configuration/markers">
+                    <h2>markers</h2>
                     <hr class="short">
                 </section>
 
-                <section id="how-to-use-optional-panel/header-options">
-                    <h2>Header Options</h2>
+                <section id="addons-and-integrations">
+                    <h2>Addons and Integrations</h2>
                     <hr class="short">
                 </section>
 
-                <section id="how-to-use-optional-panel/font-options">
-                    <h2>Font Options</h2>
+                <section id="addons-and-integrations/vanishnopacket">
+                    <h2>VanishNoPacket</h2>
                     <hr class="short">
                 </section>
 
-                <section id="how-to-use-optional-panel/slider-options">
-                    <h2>Slider Options</h2>
+                <section id="addons-and-integrations/chunkyborder">
+                    <h2>ChunkyBorder</h2>
                     <hr class="short">
                 </section>
 
-                <section id="how-to-use-optional-panel/page-options">
-                    <h2>Page Options</h2>
+                <section id="addons-and-integrations/huskhomes">
+                    <h2>HuskHomes</h2>
                     <hr class="short">
                 </section>
 
-                <section id="how-to-use-optional-panel/import-export">
-                    <h2>Import & Export</h2>
+                <section id="addons-and-integrations/pl3xmap-banners">
+                    <h2>Pl3xMap-Banners</h2>
                     <hr class="short">
                 </section>
 
-                <section id="support-desk">
-                    <h2>Support Desk</h2>
+                <section id="addons-and-integrations/pl3xmap-claims">
+                    <h2>Pl3xMap-Claims</h2>
                     <hr class="short">
                 </section>
 
-                <section id="files-and-sources">
-                    <h2>Files & Sources</h2>
+                <section id="addons-and-integrations/pl3xmap-mobs">
+                    <h2>Pl3xMap-Mobs</h2>
                     <hr class="short">
                 </section>
 
-                <section id="version-history-changelog">
-                    <h2>Version History (Changelog)</h2>
+                <section id="addons-and-integrations/pl3xmap-signs">
+                    <h2>Pl3xMap-Signs</h2>
                     <hr class="short">
                 </section>
 
-                <section id="copyright-and-license">
-                    <h2>Copyright and license</h2>
+                <section id="addons-and-integrations/pl3xmap-warps">
+                    <h2>Pl3xMap-Warps</h2>
+                    <hr class="short">
+                </section>
+
+                <section id="addons-and-integrations/deathspots">
+                    <h2>DeathSpots</h2>
+                    <hr class="short">
+                </section>
+
+                <section id="internal-external-servers">
+                    <h2>Internal and External Servers</h2>
+                    <hr class="short">
+                </section>
+
+                <section id="world-generators">
+                    <h2>3rd Party World Generators</h2>
+                    <hr class="short">
+                </section>
+
+                <section id="common-questions">
+                    <h2>Common Questions (FAQ)</h2>
+                    <hr class="short">
+                </section>
+
+                <section id="developers">
+                    <h2>Developers</h2>
+                    <hr class="short">
+                </section>
+
+                <section id="developers/maven">
+                    <h2>Maven Repo</h2>
+                    <hr class="short">
+                </section>
+
+                <section id="developers/api">
+                    <h2>API</h2>
                     <hr class="short">
                 </section>
 
@@ -436,17 +484,20 @@ a {
         </div>
     </div>
 
-    <div class="validator">
-        <a href="https://html5.validator.nu/?doc=<?=urlencode($origin)?>" target="_blank">
-            <img src="/images/valid_html5.webp" title="Valid HTML 5" alt="Valid HTML 5">
-        </a>
-        <a href="https://jigsaw.w3.org/css-validator/validator?uri=<?=urlencode($origin)?>" target="_blank">
-            <img src="/images/valid_css3.webp" title="Valid CSS 3" alt="Valid CSS 3">
-        </a>
-        <a href="https://html5.validator.nu/?doc=<?=urlencode($origin)?>" target="_blank">
-            <img src="/images/valid_svg11.webp" title="Valid SVG 1.1" alt="Valid SVG 1.1">
-        </a>
-    </div>
+    <footer>
+        <p>
+            <a href="https://html5.validator.nu/?doc=<?=urlencode($origin)?>" target="_blank">
+                <img src="/images/valid_html5.webp" title="Valid HTML 5" alt="Valid HTML 5">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=<?=urlencode($origin)?>" target="_blank">
+                <img src="/images/valid_css3.webp" title="Valid CSS 3" alt="Valid CSS 3">
+            </a>
+            <a href="https://html5.validator.nu/?doc=<?=urlencode($origin)?>" target="_blank">
+                <img src="/images/valid_svg11.webp" title="Valid SVG 1.1" alt="Valid SVG 1.1">
+            </a>
+        </p>
+        <p>Copyright &copy; 2020-2023 William Blake Galbreath</p>
+    </footer>
 
 <script>
 const offset = 150
