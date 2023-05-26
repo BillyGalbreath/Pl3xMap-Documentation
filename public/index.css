@@ -1,228 +1,228 @@
 :root {
-    --bg-color: #222222;
-    --text-dark: #111111;
-    --text-normal: #aaaaaa;
-    --text-bright: #eeeeee;
-    --accent-color: #0e97ee;
+  --bg-color: #222222;
+  --text-dark: #111111;
+  --text-normal: #aaaaaa;
+  --text-bright: #eeeeee;
+  --accent-color: #0e97ee;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 html,
 body {
-    background: var(--bg-color);
-    color: var(--text-normal);
-    line-height: 31px;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-normal);
+  line-height: 31px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .wrapper {
-    max-width: 1140px;
-    margin: 0 auto;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 header {
-    padding: 60px 0 80px;
-    text-align: center;
+  padding: 60px 0 80px;
+  text-align: center;
 }
 
 header p {
-    padding: 15px 0 20px;
-    font-size: 21px;
-    font-weight: 300;
-    line-height: 1.4;
-    text-transform: capitalize;
+  padding: 15px 0 20px;
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1.4;
+  text-transform: capitalize;
 }
 
 .inner {
-    display: flex;
-    min-height: 100vh;
+  display: flex;
+  min-height: 100vh;
 }
 
 .content {
-    margin: 0 0 0 10px;
-    flex-grow: 2;
-    min-height: 200vh;
+  margin: 0 0 0 10px;
+  flex-grow: 2;
+  min-height: 200vh;
 }
 
 .content section {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 nav {
-    width: 263px;
-    padding: 20px 0 100px 20px;
-    position: sticky;
-    top: 20px;
-    align-self: flex-start;
+  width: 263px;
+  padding: 20px 0 100px 20px;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
 }
 
 nav a {
-    display: block;
-    padding: 0 20px;
-    font-size: 15px;
-    line-height: 31px;
+  display: block;
+  padding: 0 20px;
+  font-size: 15px;
+  line-height: 31px;
 }
 
 nav a,
 nav .nav .active .nav a {
-    font-weight: 400;
-    border-left: 2px solid transparent;
-    transition: color 0.075s linear;
+  font-weight: 400;
+  border-left: 2px solid transparent;
+  transition: color 0.075s linear;
 }
 
 nav .active a:hover {
-    padding: 0 20px;
+  padding: 0 20px;
 }
 
 nav a:hover,
 nav .nav .active .nav a:hover {
-    padding: 0 20px 0 21px;
-    color: var(--accent-color);
-    border-left: 1px solid var(--accent-color);
+  padding: 0 20px 0 21px;
+  color: var(--accent-color);
+  border-left: 1px solid var(--accent-color);
 }
 
 nav .nav .active .nav a,
 nav .nav .active .nav .active a:hover {
-    padding: 0 20px 0 40px;
+  padding: 0 20px 0 40px;
 }
 
 nav .nav .active .nav a {
-    color: var(--text-normal);
+  color: var(--text-normal);
 }
 
 nav .nav .active .nav a:hover {
-    padding: 0 20px 0 41px;
+  padding: 0 20px 0 41px;
 }
 
 nav .active a,
 nav .nav .active .nav .active a {
-    font-weight: 700;
-    color: var(--accent-color);
-    border-left: 2px solid var(--accent-color);
+  font-weight: 700;
+  color: var(--accent-color);
+  border-left: 2px solid var(--accent-color);
 }
 
 nav .nav .nav {
-    display: none;
+  display: none;
 }
 
 nav .nav .active .nav {
-    display: block;
+  display: block;
 }
 
 #topBtn {
-    pointer-events: none;
-    cursor: default;
-    position: fixed;
-    bottom: 55px;
-    right: 20px;
-    height: 40px;
-    width: 40px;
-    font-size: 18px;
-    background-color: grey;
-    color: #fff;
-    border-radius: 50%;
-    border: none;
-    outline: 0;
-    z-index: 1;
-    opacity: 0;
-    transition: all 0.1s ease-in-out;
+  pointer-events: none;
+  cursor: default;
+  position: fixed;
+  bottom: 55px;
+  right: 20px;
+  height: 40px;
+  width: 40px;
+  font-size: 18px;
+  background-color: grey;
+  color: #fff;
+  border-radius: 50%;
+  border: none;
+  outline: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.1s ease-in-out;
 }
 
 #topBtn.shown {
-    pointer-events: all;
-    cursor: pointer;
-    opacity: 1;
+  pointer-events: all;
+  cursor: pointer;
+  opacity: 1;
 }
 
 #topBtn:hover {
-    background-color: #404040;
+  background-color: #404040;
 }
 
 h1 {
-    margin: 20px 0 0;
-    font-size: 48px;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--text-bright);
+  margin: 20px 0 0;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-bright);
 }
 
 h2 {
-    margin: 20px 0 10px;
-    font-size: 41px;
-    font-weight: 300;
-    line-height: 41px;
-    color: var(--text-bright);
+  margin: 20px 0 10px;
+  font-size: 41px;
+  font-weight: 300;
+  line-height: 41px;
+  color: var(--text-bright);
 }
 
 hr {
-    margin: 40px 0 0;
-    border-top: 1px solid var(--text-dark);
+  margin: 40px 0 0;
+  border-top: 1px solid var(--text-dark);
 }
 
 hr.short {
-    width: 130px;
-    border-top: 1px solid var(--text-normal);
+  width: 130px;
+  border-top: 1px solid var(--text-normal);
 }
 
 a {
-    color: var(--text-bright);
-    text-decoration: none;
+  color: var(--text-bright);
+  text-decoration: none;
 }
 
 #pi {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    cursor: default;
-    font-size: 14px;
-    line-height: 14px;
-    color: var(--text-dark);
-    user-select: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  cursor: default;
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--text-dark);
+  user-select: none;
 }
 
 dialog {
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    padding: 15px 20px;
-    background-color: var(--text-normal);
-    border: 1px solid var(--text-dark);
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px #000;
-    z-index: 10;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  padding: 15px 20px;
+  background-color: var(--text-normal);
+  border: 1px solid var(--text-dark);
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px #000;
+  z-index: 10;
 }
 
 dialog input {
-    width: 150px;
-    text-align: center;
-    background-color: var(--text-normal);
-    border: 1px solid var(--text-dark);
+  width: 150px;
+  text-align: center;
+  background-color: var(--text-normal);
+  border: 1px solid var(--text-dark);
 }
 
 dialog::backdrop {
-    backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 
 footer {
-    border: 0;
-    text-align: center;
-    padding-bottom: 50px;
+  border: 0;
+  text-align: center;
+  padding-bottom: 50px;
 }
 
 footer a img {
-    border: 0;
-    width: 80px;
-    height: 15px;
+  border: 0;
+  width: 80px;
+  height: 15px;
 }
