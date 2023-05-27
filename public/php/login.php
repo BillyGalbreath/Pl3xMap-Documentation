@@ -20,7 +20,7 @@ if ($logged_in && isset($_POST['logout'])) {
   if (isset($username) && isset($password)) {
     $repeat = @$_POST['repeat'];
     if (isset($repeat)) {
-      trySignup($username, $password, $repeat);
+      //trySignup($username, $password, $repeat);
     } else {
       tryLogin($username, $password);
     }
