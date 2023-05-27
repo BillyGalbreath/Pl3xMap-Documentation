@@ -60,7 +60,7 @@ function trySignup($username, $password, $repeat) {
     $error = "Error: Username not valid";
     return; // username not valid
   }
-  if (getUser($username) !== null) {
+  if (getUser($username) !== false) {
     $error = "Error: Username taken";
     return; // username already exists
   }
