@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('PL3XMAP')) {
-  header('Location: /');
+  header('location: /');
   die();
 }
 

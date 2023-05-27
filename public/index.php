@@ -45,11 +45,24 @@ include('index.css');
 <body>
   <button onclick="go()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 
+<?php
+if (isset($error)) {
+  echo "  <p id=\"err\">" . $error . "</p>";
+}
+?>
+
   <div class="wrapper">
 
     <header>
       <h1>Pl3xMap Documentation</h1>
       <p>Minimalistic and lightweight world map viewer for<br>Minecraft servers using the vanilla rendering style</p>
+<?php
+if ($logged_in) {
+?>
+      <p><?=$_SESSION['username']?></p>
+<?php
+}
+?>
       <hr>
     </header>
 
@@ -245,16 +258,33 @@ include('index.css');
     <p>Copyright &copy; 2020-2023 William Blake Galbreath</p>
   </footer>
 
-  <p id="pi">&pi;</p>
-
-  <dialog id="d1"><form method="post" action="/"><input type="text" name="pl3x"><br><input type="password" name="map"><input type="submit" hidden></form></dialog>
-  <dialog id="d2"><form method="post" action="/"><input type="text" name="pl3x"><br><input type="password" name="map"><br><input type="password" name="v3"><input type="submit" hidden></form></dialog>
+  <p id="pi"><?php if ($logged_in) { ?>X<form method="post" action="/" id="form1"><input type="text" name="logout" hidden><input type="submit" hidden></form><?php } else { echo '&pi;'; } ?></p>
+  <dialog id="d1"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><input type="submit" hidden></form></dialog>
+  <dialog id="d2"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><br><input type="password" name="repeat"><input type="submit" hidden></form></dialog>
 
   <script>
 <?php
 
 include('index.js');
 
+if ($logged_in) {
+?>
+document.querySelector('#pi').onclick = (e) => {
+  document.getElementById('form1').submit();
+}
+<?php
+} else {
+?>
+document.querySelector('#pi').onclick = (e) => {
+  if (e.shiftKey && e.ctrlKey) document.querySelector(e.altKey ? '#d2' : '#d1').showModal()
+}
+const modal = document.querySelector('dialog')
+modal.onclick = (e) => {
+  const d = modal.getBoundingClientRect()
+  if (e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom) modal.close()
+}
+<?php
+}
 ?>
   </script>
 

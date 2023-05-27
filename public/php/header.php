@@ -1,12 +1,13 @@
 <?php
 
 if (!defined('PL3XMAP')) {
-  header('Location: /');
+  header('location: /');
   die();
 }
 
 include('php/origin.php');
 include('php/db.php');
+include('php/login.php');
 
 $og_title = 'Pl3xMap';
 $og_url = $origin . '/';

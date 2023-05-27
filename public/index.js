@@ -2,7 +2,6 @@ const offset = 150
 const topBtn = document.getElementById('topBtn')
 const sections = document.querySelectorAll('section')
 const navLinks = document.querySelectorAll('nav a')
-const modal = document.querySelector('dialog')
 let current
 setTimeout(() => go(window.location.pathname.substring(1)), 0)
 window.onscroll = function () { onScroll() }
@@ -12,15 +11,6 @@ navLinks.forEach(link => {
     go(link.getAttribute('href').substring(1))
   }
 })
-document.querySelector('#pi').onclick = (e) => {
-  if (e.shiftKey && e.ctrlKey) if (e.altKey)
-    document.querySelector('#d2').showModal()
-  else document.querySelector('#d1').showModal()
-}
-modal.onclick = (e) => {
-  const d = modal.getBoundingClientRect()
-  if (e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom) modal.close()
-}
 const setCur = debounce((cur) => {
   window.history.replaceState(null, 'title', (current = cur)?.getAttribute('href') ?? '/')
 })
