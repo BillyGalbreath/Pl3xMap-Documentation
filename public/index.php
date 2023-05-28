@@ -118,6 +118,8 @@ foreach ($sections as $section) {
   echo "<section" . $slug . "><h2>" . $section['title'] . "</h2><hr class=\"short\"><div>" . $section['content'] . "</div></section>\n";
 }
 ?>
+        <dialog id="d1"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><input type="submit" hidden></form></dialog>
+        <dialog id="d2"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><br><input type="password" name="repeat"><input type="submit" hidden></form></dialog>
       </div>
     </div>
   </div>
@@ -133,8 +135,6 @@ foreach ($sections as $section) {
   <div id="pi">X<form method="post" action="/"><input type="text" name="logout" hidden><input type="submit" hidden></form></div>
 <?php } else { ?>
   <div id="pi">&pi;</div>
-  <dialog id="d1"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><input type="submit" hidden></form></dialog>
-  <dialog id="d2"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><br><input type="password" name="repeat"><input type="submit" hidden></form></dialog>
 <?php } ?>
   <script><?php ob_start('minify_js');require_once(__DIR__ . '/index.js'); ?>
 function click(e) {
