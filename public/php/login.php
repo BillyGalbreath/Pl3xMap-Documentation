@@ -39,6 +39,10 @@ function tryLogin($username, $password) {
     $error = "Access Denied";
     return; // wrong password
   }
+  if ($user['active'] !== 1) {
+    $error = "Access Denied";
+    return; // user not active
+  }
   $_SESSION['userid'] = $user['id'];
   $_SESSION['username'] = $user['username'];
 }
