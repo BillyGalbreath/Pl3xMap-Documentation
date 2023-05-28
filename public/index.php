@@ -132,11 +132,11 @@ foreach ($sections as $section) {
 <?php
 if ($logged_in) {
 ?>
-  <p id="pi">X<form method="post" action="/" id="form1"><input type="text" name="logout" hidden><input type="submit" hidden></form></p>
+  <div id="pi">X<form method="post" action="/"><input type="text" name="logout" hidden><input type="submit" hidden></form></div>
 <?php
 } else {
 ?>
-  <p id="pi">&pi;</p>
+  <div id="pi">&pi;</div>
   <dialog id="d1"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><input type="submit" hidden></form></dialog>
   <dialog id="d2"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><br><input type="password" name="repeat"><input type="submit" hidden></form></dialog>
 <?php
@@ -150,16 +150,15 @@ document.querySelector('#pi').onclick = (e) => {
 <?php
 if ($logged_in) {
 ?>
-  document.getElementById('form1').submit()
+  document.querySelector('#pi form').submit()
 <?php
 } else {
 ?>
   if (e.shiftKey && e.ctrlKey) document.querySelector(e.altKey ? '#d2' : '#d1').showModal()
 }
-const modal = document.querySelector('dialog')
-modal.onclick = (e) => {
-  const d = modal.getBoundingClientRect()
-  if (e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom) modal.close()
+document.querySelector('dialog').onclick = (e) => {
+  const d = e.target.getBoundingClientRect()
+  if (e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom) e.target.close()
 <?php
 }
 ?>
