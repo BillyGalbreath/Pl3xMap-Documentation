@@ -137,7 +137,7 @@ foreach ($sections as $section) {
   <dialog id="d2"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><br><input type="password" name="repeat"><input type="submit" hidden></form></dialog>
 <?php } ?>
   <script><?php ob_start('minify_js');require_once(__DIR__ . '/index.js'); ?>
-document.querySelector('#pi').onclick = (e) => {
+function click(e) {
 <?php if ($logged_in) { ?>
   document.querySelector('#pi form').submit()
 <?php } else { ?>

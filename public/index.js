@@ -2,12 +2,17 @@ const offset = 150;
 const topBtn = document.getElementById('topBtn');
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('nav a');
+const pi = document.querySelector('#pi');
 let current;
 setTimeout(() => go(window.location.pathname.substring(1)), 0);
 window.onscroll = function () { onScroll() };
+window.onclick = function (e) {
+  if (!outside(e, pi.getBoundingClientRect())) {
+    click(e);
+  }
+};
 document.querySelectorAll('dialog').forEach(dialog => dialog.onclick = (e) => {
-  const d = e.target.getBoundingClientRect();
-  if (e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom) e.target.close();
+  if (outside(e, e.target.getBoundingClientRect())) e.target.close();
 });
 navLinks.forEach(link => {
   link.onclick = (e) => {
@@ -20,6 +25,9 @@ const setCur = debounce((cur) => {
 });
 function modal(e) {
   return e.shiftKey && e.ctrlKey;
+};
+function outside(e, d) {
+  return e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom;
 };
 function onScroll() {
   if (window.scrollY > 1000) {
