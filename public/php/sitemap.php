@@ -13,6 +13,8 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 echo "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
 echo "  <url><loc>" . $origin . "/</loc></url>\n";
 foreach ($sections as $section) {
-  echo "  <url><loc>" . $origin . "/" . $section['slug'] . "</loc></url>\n";
+  if (!empty($section['slug'])) {
+    echo "  <url><loc>" . $origin . "/" . $section['slug'] . "</loc></url>\n";
+  }
 }
 echo "</urlset>\n";

@@ -23,13 +23,41 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.wrapper {
-  max-width: 1140px;
-  margin: 0 auto;
+#err {
+  position: fixed;
+  width: 100%;
+  color: var(--text-bright);
+  background-color: rgb(128, 0, 0);
+  text-align: center;
 }
 
-ul {
-  list-style: none;
+#topBtn {
+  pointer-events: none;
+  cursor: default;
+  position: fixed;
+  bottom: 55px;
+  right: 20px;
+  height: 40px;
+  width: 40px;
+  font-size: 18px;
+  background-color: grey;
+  color: #fff;
+  border-radius: 50%;
+  border: none;
+  outline: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.1s ease-in-out;
+}
+
+#topBtn.shown {
+  pointer-events: all;
+  cursor: pointer;
+  opacity: 1;
+}
+
+#topBtn:hover {
+  background-color: #404040;
 }
 
 header {
@@ -43,21 +71,6 @@ header p {
   font-weight: 300;
   line-height: 1.4;
   text-transform: capitalize;
-}
-
-.inner {
-  display: flex;
-  min-height: 100vh;
-}
-
-.content {
-  margin: 0 0 0 10px;
-  flex-grow: 2;
-  min-height: 200vh;
-}
-
-.content section {
-  min-height: 100vh;
 }
 
 nav {
@@ -121,35 +134,6 @@ nav .nav .active .nav {
   display: block;
 }
 
-#topBtn {
-  pointer-events: none;
-  cursor: default;
-  position: fixed;
-  bottom: 55px;
-  right: 20px;
-  height: 40px;
-  width: 40px;
-  font-size: 18px;
-  background-color: grey;
-  color: #fff;
-  border-radius: 50%;
-  border: none;
-  outline: 0;
-  z-index: 1;
-  opacity: 0;
-  transition: all 0.1s ease-in-out;
-}
-
-#topBtn.shown {
-  pointer-events: all;
-  cursor: pointer;
-  opacity: 1;
-}
-
-#topBtn:hover {
-  background-color: #404040;
-}
-
 h1 {
   margin: 20px 0 0;
   font-size: 48px;
@@ -176,17 +160,41 @@ hr.short {
   border-top: 1px solid var(--text-normal);
 }
 
+ul {
+  list-style: none;
+}
+
 a {
   color: var(--text-bright);
   text-decoration: none;
 }
 
-#err {
-    position: fixed;
-    width: 100%;
-    color: var(--text-bright);
-    background-color: rgb(128, 0, 0);
-    text-align: center;
+.wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.inner {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  margin: 0 0 0 10px;
+  flex-grow: 2;
+  min-height: 200vh;
+}
+
+section {
+  min-height: 100vh;
+}
+
+section div {
+  margin: 50px 0;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 26px;
 }
 
 #pi {

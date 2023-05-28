@@ -70,7 +70,7 @@ function trySignup($username, $password, $repeat) {
 
 function getUser($username) {
   global $conn, $error;
-  $sql = "SELECT * FROM users WHERE username = ?;";
+  $sql = "SELECT * FROM `users` WHERE `username` = ?;";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
     $error = "Error: Something went wrong";
@@ -90,7 +90,7 @@ function getUser($username) {
 
 function createUser($username, $password) {
   global $conn, $error;
-  $sql = "INSERT INTO users (username, password) VALUES (?, ?);";
+  $sql = "INSERT INTO `users` (`username`, `password`) VALUES (?, ?);";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
     $error = "Error: Something went wrong";

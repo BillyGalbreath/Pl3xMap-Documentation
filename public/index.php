@@ -84,6 +84,9 @@ $first = true;
 $subcat = false;
 echo "<ul class=\"nav\">";
 foreach ($sections as $section) {
+  if (empty($section['slug'])) {
+    continue;
+  }
   if (str_contains($section['slug'], '/')) {
     if (!$subcat) {
       $subcat = true;
@@ -109,10 +112,10 @@ if ($subcat) {
 echo "</ul>";
 ?></nav>
       <div class="content">
-<section><h2>Introduction</h2><hr class="short"><div>This documentation is a W.I.P.</div></section>
 <?php
 foreach ($sections as $section) {
-  echo "<section id=\"" . $section['slug'] . "\"><h2>" . $section['title'] . "</h2><hr class=\"short\"><div>" . $section['content'] . "</div></section>\n";
+  $slug = !empty($section['slug']) ? ' id="' . $section['slug'] . '"' : '';
+  echo "<section" . $slug . "><h2>" . $section['title'] . "</h2><hr class=\"short\"><div>" . $section['content'] . "</div></section>\n";
 }
 ?>
       </div>
