@@ -33,6 +33,16 @@ if (isset($id)) {
     break;
   }
 }
+function minify_css($css) {
+  $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+  $css = preg_replace('/\s*([{}|:;,])\s+/', '$1', $css);
+  $css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '',$css);
+  return $css;
+}
+function minify_js($js) {
+  require_once(__DIR__ . '/php/Minifier.php');
+  return Minifier::minify($js);
+}
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -54,28 +64,18 @@ if (isset($id)) {
   <meta name="theme-color" content="#222222">
   <meta name="darkreader-lock" content="true">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48" crossOrigin="anonymous">
-  <style>
-<?php
-require_once(__DIR__ . '/index.css');
-?>
-  </style>
+  <style><?php ob_start('minify_css');require_once(__DIR__ . '/index.css');ob_end_flush(); ?></style>
 </head>
 <body>
   <button onclick="go()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
-
   <?php if (isset($error)) echo "<p id=\"err\">" . $error . "</p>"; ?>
-
   <div class="wrapper">
     <header>
       <h1>Pl3xMap Documentation</h1>
       <p>Minimalistic and lightweight world map viewer for<br>Minecraft servers using the vanilla rendering style</p>
-<?php
-if ($logged_in) {
-?>
+<?php if ($logged_in) { ?>
       <p><?=$_SESSION['username']?></p>
-<?php
-}
-?>
+<?php } ?>
       <hr>
     </header>
     <div class="inner">
@@ -129,40 +129,21 @@ foreach ($sections as $section) {
     </p>
     <p>Copyright &copy; 2020-2023 William Blake Galbreath</p>
   </footer>
-<?php
-if ($logged_in) {
-?>
+<?php if ($logged_in) { ?>
   <div id="pi">X<form method="post" action="/"><input type="text" name="logout" hidden><input type="submit" hidden></form></div>
-<?php
-} else {
-?>
+<?php } else { ?>
   <div id="pi">&pi;</div>
   <dialog id="d1"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><input type="submit" hidden></form></dialog>
   <dialog id="d2"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><br><input type="password" name="repeat"><input type="submit" hidden></form></dialog>
-<?php
-}
-?>
-  <script>
-<?php
-require_once(__DIR__ . '/index.js');
-?>
+<?php } ?>
+  <script><?php ob_start('minify_js');require_once(__DIR__ . '/index.js'); ?>
 document.querySelector('#pi').onclick = (e) => {
-<?php
-if ($logged_in) {
-?>
+<?php if ($logged_in) { ?>
   document.querySelector('#pi form').submit()
-<?php
-} else {
-?>
-  if (e.shiftKey && e.ctrlKey) document.querySelector(e.altKey ? '#d2' : '#d1').showModal()
+<?php } else { ?>
+  if (modal(e)) document.querySelector(which(e)).showModal()
+<?php } ?>
 }
-document.querySelector('dialog').onclick = (e) => {
-  const d = e.target.getBoundingClientRect()
-  if (e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom) e.target.close()
-<?php
-}
-?>
-}
-  </script>
+<?php ob_end_flush(); ?></script>
 </body>
 </html>
