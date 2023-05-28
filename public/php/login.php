@@ -20,7 +20,7 @@ if ($logged_in && isset($_POST['logout'])) {
   if (isset($username) && isset($password)) {
     $repeat = @$_POST['repeat'];
     if (isset($repeat)) {
-      //trySignup($username, $password, $repeat);
+      trySignup($username, $password, $repeat);
     } else {
       tryLogin($username, $password);
     }
@@ -35,15 +35,12 @@ function tryLogin($username, $password) {
     $error = "Access Denied";
     return; // no user
   }
-  $passwordCheck = password_verify($password, $user['password']);
-  if ($passwordCheck === false) {
+  if (!password_verify($password, $user['password'])) {
     $error = "Access Denied";
     return; // wrong password
   }
-  if ($passwordCheck === true) {
-    $_SESSION['userid'] = $user['id'];
-    $_SESSION['username'] = $user['username'];
-  }
+  $_SESSION['userid'] = $user['id'];
+  $_SESSION['username'] = $user['username'];
 }
 
 function trySignup($username, $password, $repeat) {
@@ -81,9 +78,9 @@ function getUser($username) {
   $row = mysqli_fetch_assoc($result);
   mysqli_stmt_close($stmt);
   if ($row) {
-    return $row;
+    return $row; // return user
   } else {
-    return false;
+    return false; // no user
   }
 }
 

@@ -2,12 +2,12 @@ Options -Indexes
 
 RewriteEngine On
 
-RewriteRule ^robots\.txt$  /php/robots.php [L]
-RewriteRule ^sitemap\.xml$  /php/sitemap.php [L]
+RewriteRule ^robots\.txt$ /php/robots.php [L]
+RewriteRule ^sitemap\.xml$ /php/sitemap.php [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule (.*) /index.php?id=$1 [L] 
+RewriteRule (.*) /index.php?id=$1 [L]
 
 <IfModule mod_deflate.c>
 AddOutputFilterByType DEFLATE application/javascript

@@ -2,7 +2,7 @@
 
 header('Content-Type:text/plain');
 
-include('origin.php');
+require_once(__DIR__ . '/origin.php');
 
 echo "User-agent: *\n";
 echo "Allow: /\n";
