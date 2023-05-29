@@ -65,7 +65,12 @@ function minify_js($js) {
   <meta name="theme-color" content="#222222">
   <meta name="darkreader-lock" content="true">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48" crossOrigin="anonymous">
-  <style><?php ob_start('minify_css');require_once(__DIR__ . '/index.css');ob_end_flush(); ?></style>
+  <style><?php
+ob_start('minify_css');
+if ($logged_in) echo "nav .nav .subnav {display: block !important;}";
+require_once(__DIR__ . '/index.css');
+ob_end_flush();
+?></style>
 </head>
 <body>
   <button onclick="go()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
@@ -80,23 +85,39 @@ function minify_js($js) {
       <hr>
     </header>
     <div class="inner">
-      <nav class="docs-sidebar" data-spy="affix" data-offset-top="300" data-offset-bottom="200"><?php
+<?php if ($logged_in) { ?>
+      <nav class="docs-sidebar-test">
+        <ul class="nav">
+          <li draggable="true"><a href="/getting-started" draggable="false">Getting Started</a></li>
+          <li draggable="true"><a href="/how-to-install" draggable="false">How to Install</a></li>
+          <li draggable="true"><a href="/commands-and-permissions" draggable="false">Commands and Permissions</a></li>
+          <li draggable="true"><a href="/configuration" draggable="false">Configuration</a>
+            <ul class="subnav">
+              <li draggable="true"><a href="/configuration/config.yml" draggable="false">config.yml</a></li>
+              <li draggable="true"><a href="/configuration/colors.yml" draggable="false">colors.yml</a></li>
+            </ul>
+          </li>
+          <li draggable="true"><a href="/how-to-install" draggable="false">How to Install</a></li>
+        </ul>
+      </nav>
+<?php } else { ?>
+      <nav class="docs-sidebar"><?php
 $first = true;
-$subcat = false;
+$subnav = false;
 echo "<ul class=\"nav\">";
 foreach ($sections as $section) {
-  if (empty($section['slug'])) {
+  if ($section['slug'] === 'introduction') {
     continue;
   }
   if (str_contains($section['slug'], '/')) {
-    if (!$subcat) {
-      $subcat = true;
-      echo "<ul class=\"nav\">";
+    if (!$subnav) {
+      $subnav = true;
+      echo "<ul class=\"subnav\">";
     }
     echo "<li><a href=\"/" . $section['slug'] . "\">" . $section['title'] . "</a></li>";
   } else {
-    if ($subcat) {
-      $subcat = false;
+    if ($subnav) {
+      $subnav = false;
       echo "</ul>";
     }
     if (!$first) {
@@ -106,21 +127,35 @@ foreach ($sections as $section) {
     $first = false;
   }
 }
-if ($subcat) {
-  $subcat = false;
+if ($subnav) {
+  $subnav = false;
   echo "</ul></li>";
 }
 echo "</ul>";
 ?></nav>
+<?php } ?>
       <div class="content">
+
+<?php if ($logged_in) { ?>
+<section>
+  <div class="form">
+    <label><span>Slug:</span> <input type="text" name="slug" value="slug-value" autocomplete="off"></label><br>
+    <label><span>Title:</span> <input type="text" name="title" value="Title Value" autocomplete="off"></label><br>
+    <label><span>Desc:</span> <input type="text" name="description" value="Description Value" autocomplete="off"></label><br>
+    <textarea name="content">some content</textarea><br>
+    <p><input type="button" name="cancel" value="Cancel"><input type="submit" value="Save"></p>
+  </div>
+</section>
+<?php } ?>
+
 <?php
 foreach ($sections as $section) {
-  $slug = !empty($section['slug']) ? ' id="' . $section['slug'] . '"' : '';
+  $slug = $section['slug'] === 'introduction' ? '' : ' id="' . $section['slug'] . '"';
   echo "<section" . $slug . "><h2>" . $section['title'] . "</h2><hr class=\"short\"><div>" . $section['content'] . "</div></section>\n";
 }
 ?>
-        <dialog id="d1"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><input type="submit" hidden></form></dialog>
-        <dialog id="d2"><form method="post" action="/"><input type="text" name="username"><br><input type="password" name="password"><br><input type="password" name="repeat"><input type="submit" hidden></form></dialog>
+        <dialog id="d1"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
+        <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
       </div>
     </div>
   </div>
