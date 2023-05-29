@@ -1,4 +1,10 @@
 <?php
+
+if (!defined('PL3XMAP')) {
+  header('location: /');
+  die();
+}
+
 /*
  * This file is part of the JShrink package.
  *

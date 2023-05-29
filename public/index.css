@@ -35,8 +35,8 @@ body {
   pointer-events: none;
   cursor: default;
   position: fixed;
-  bottom: 55px;
-  right: 20px;
+  bottom: 50px;
+  right: 50px;
   height: 40px;
   width: 40px;
   font-size: 18px;
@@ -79,6 +79,7 @@ nav {
   position: sticky;
   top: 20px;
   align-self: flex-start;
+  user-select: none;
 }
 
 nav a {

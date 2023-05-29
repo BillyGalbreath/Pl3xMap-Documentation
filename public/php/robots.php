@@ -1,8 +1,10 @@
 <?php
 
-header('Content-Type:text/plain');
+define('PL3XMAP', true);
 
 require_once(__DIR__ . '/origin.php');
+
+header('Content-Type:text/plain');
 
 echo "User-agent: *\n";
 echo "Allow: /\n";
