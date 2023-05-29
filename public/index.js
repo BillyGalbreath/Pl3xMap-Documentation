@@ -124,17 +124,16 @@ const draggables = document.querySelectorAll('li[draggable="true"]');
 draggables.forEach(draggable => {
   draggable.addEventListener('dragstart', (e) => {
     draggable.classList.add('dragging');
-    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setDragImage(new Image(), 0, 0);
   });
   draggable.addEventListener('dragend', (e) => {
     draggable.classList.remove('dragging');
     hideBorders();
-    draggable.style.backgroundColor = "none";
+    draggable.style.backgroundColor = 'none';
   });
 });
 containers.forEach(container => {
-  console.log(container);
   container.addEventListener('dragexit', (e) => {
     hideBorders()
   });
@@ -144,23 +143,22 @@ containers.forEach(container => {
   container.addEventListener('dragover', (e) => {
     hideBorders();
     e.preventDefault();
-    e.dataTransfer.dropEffect = "move";
+    e.dataTransfer.dropEffect = 'move';
     const data = dragData(container, e);
     const draggable = document.querySelector('.dragging');
-    console.log(data);
     if (data.element == null) {
       //container.appendChild(draggable);
       //container.lastElementChild.classList.add('dragtobottom');
     } else {
       //container.insertBefore(draggable, afterElement);
       switch(data.side) {
-        case "top":
+        case 'top':
           data.element.classList.add('dragtotop');
           break;
-        case "middle":
+        case 'middle':
           data.element.classList.add('dragtomiddle');
           break;
-        case "bottom":
+        case 'bottom':
           data.element.classList.add('dragtobottom');
           break;
       }
@@ -174,7 +172,6 @@ function dragData(container, e) {
     if (e.clientY >= box.top && e.clientY <= box.bottom) {
       const match = arr[i].lastElementChild.matches('ul.subnav');
       const height = (box.bottom - box.top) / (match ? 3 * 3 : 3);
-      console.log(match + " " + e.clientY + " " + box.top + " " + height);
       if (e.clientY >= box.bottom - height) {
         if (i - 1 >= 0) {
           return {element: arr[i - 1],side: 'top'}

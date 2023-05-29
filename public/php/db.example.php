@@ -20,7 +20,7 @@ if (!$conn) {
 function getSections() {
   global $conn;
   $sections = array();
-  $sql = "SELECT * FROM `content` ORDER BY `order` ASC;";
+  $sql = 'SELECT * FROM `content` ORDER BY `order` ASC;';
   $stmt = mysqli_stmt_init($conn);
   if (mysqli_stmt_prepare($stmt, $sql)) {
     mysqli_stmt_execute($stmt);

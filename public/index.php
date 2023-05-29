@@ -56,8 +56,8 @@ function minify_js($js) {
   <meta property="og:type" content="website">
   <meta property="og:title" content="<?=$og_title?>">
   <meta property="og:description" content="<?=$og_desc?>">
-  <?php if (isset($og_image)) { echo "<meta property=\"og:image\" content=\"" . $og_image . "\">\n"; } ?>
-  <?php if ($og_large_image) { echo "<meta name=\"twitter:card\" content=\"summary_large_image\">\n"; } ?>
+  <?php if (isset($og_image)) { echo '<meta property="og:image" content="' . $og_image . '">' . "\n"; } ?>
+  <?php if ($og_large_image) { echo '<meta name="twitter:card" content="summary_large_image">' . "\n"; } ?>
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -67,14 +67,14 @@ function minify_js($js) {
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48" crossOrigin="anonymous">
   <style><?php
 ob_start('minify_css');
-if ($logged_in) echo "nav .nav .subnav {display: block !important;}";
+if ($logged_in) echo 'nav .nav .subnav {display: block !important;}';
 require_once(__DIR__ . '/index.css');
 ob_end_flush();
 ?></style>
 </head>
 <body>
   <button onclick="go()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
-  <?php if (isset($error)) echo "<p id=\"err\">" . $error . "</p>"; ?>
+  <?php if (isset($error)) echo '<p id="err">' . $error . '</p>'; ?>
   <div class="wrapper">
     <header>
       <h1>Pl3xMap Documentation</h1>
@@ -104,7 +104,7 @@ ob_end_flush();
       <nav class="docs-sidebar"><?php
 $first = true;
 $subnav = false;
-echo "<ul class=\"nav\">";
+echo '<ul class="nav">';
 foreach ($sections as $section) {
   if ($section['slug'] === 'introduction') {
     continue;
@@ -112,26 +112,26 @@ foreach ($sections as $section) {
   if (str_contains($section['slug'], '/')) {
     if (!$subnav) {
       $subnav = true;
-      echo "<ul class=\"subnav\">";
+      echo '<ul class="subnav">';
     }
-    echo "<li><a href=\"/" . $section['slug'] . "\">" . $section['title'] . "</a></li>";
+    echo '<li><a href="/' . $section['slug'] . '">' . $section['title'] . '</a></li>';
   } else {
     if ($subnav) {
       $subnav = false;
-      echo "</ul>";
+      echo '</ul>';
     }
     if (!$first) {
-      echo "</li>";
+      echo '</li>';
     }
-    echo "<li><a href=\"/" . $section['slug'] . "\">" . $section['title'] . "</a>";
+    echo '<li><a href="/' . $section['slug'] . '">' . $section['title'] . '</a>';
     $first = false;
   }
 }
 if ($subnav) {
   $subnav = false;
-  echo "</ul></li>";
+  echo '</ul></li>';
 }
-echo "</ul>";
+echo '</ul>';
 ?></nav>
 <?php } ?>
       <div class="content">
@@ -151,7 +151,7 @@ echo "</ul>";
 <?php
 foreach ($sections as $section) {
   $slug = $section['slug'] === 'introduction' ? '' : ' id="' . $section['slug'] . '"';
-  echo "<section" . $slug . "><h2>" . $section['title'] . "</h2><hr class=\"short\"><div>" . $section['content'] . "</div></section>\n";
+  echo '<section' . $slug . '><h2>' . $section['title'] . '</h2><hr class="short"><div>' . $section['content'] . "</div></section>\n";
 }
 ?>
         <dialog id="d1"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
