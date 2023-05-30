@@ -21,9 +21,8 @@ if ($logged_in && isset($_POST['logout'])) {
     $repeat = @$_POST['repeat'];
     if (isset($repeat)) {
       trySignup($username, $password, $repeat);
-    } else {
-      tryLogin($username, $password);
     }
+    tryLogin($username, $password);
   }
   $logged_in = isset($_SESSION['username']);
 }
