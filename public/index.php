@@ -6,14 +6,19 @@ require_once(__DIR__ . '/php/origin.php');
 require_once(__DIR__ . '/php/db.php');
 require_once(__DIR__ . '/php/login.php');
 
-$og_title = 'Pl3xMap';
+$sections = sql('SELECT * FROM `content` ORDER BY `order` ASC;');
+
+$meta = array();
+foreach(sql('SELECT * FROM `meta`;') as $pair) {
+  $meta[$pair['key']] = $pair['value'];
+}
+
+$og_title = $meta['title'];
 $og_url = $origin . '/';
 $og_image = $origin . '/images/og_large.png';
 $og_large_image = true;
-$og_desc = 'Pl3xMap is a minimalistic and lightweight world map viewer for Minecraft servers using the vanilla Minecraft rendering style';
-$og_keywords = 'Minecraft, Mod, Plugin, Map, Pl3x, Pl3xMap, Dynamic, Live, LiveMap, BlueMap, Dynmap, SquareMap, Bukkit, BukkitMC, Spigot, SpigotMC, Paper, PaperMC, Purpur, PurpurMC, Fabric, FabricMC, Forge, ForgeMC, Quilt, QuiltMC';
-
-$sections = getSections();
+$og_desc = str_replace('<br>', ' ', $meta['description']);
+$og_keywords = $meta['keywords'];
 
 $id = @$_GET['id'];
 if (isset($id)) {
@@ -67,6 +72,32 @@ function minify_js($js) {
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48" crossOrigin="anonymous">
   <style><?php
 ob_start('minify_css');
+?>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700');
+@import url('https://fonts.googleapis.com/css2?family=Cairo');
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Libre Baskerville');
+@import url('https://fonts.googleapis.com/css2?family=Inter');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Raleway');
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+:root {
+  --bg-color: #222222;
+  --text-dark: #111111;
+  --text-normal: #aaaaaa;
+  --text-bright: #eeeeee;
+  --accent-color: #0e97ee;
+
+  --font-title: Quicksand;
+  --font-subtitle: Cairo;
+  --font-navlinks: Poppins;
+  --font-headings: Libre Baskerville;
+  --font-normal: Inter;
+
+  --font-fallback: Helvetica, Arial, sans-serif;
+}
+<?php
 if ($logged_in) echo 'nav .nav .subnav {display: block !important;}';
 require_once(__DIR__ . '/index.css');
 ob_end_flush();
@@ -77,34 +108,14 @@ ob_end_flush();
   <?php if (isset($error)) echo '<p id="err">' . $error . '</p>'; ?>
   <div class="wrapper">
     <header>
-      <h1>Pl3xMap Documentation</h1>
-      <p>Minimalistic and lightweight world map viewer for<br>Minecraft servers using the vanilla rendering style</p>
-<?php if ($logged_in) { ?>
-      <p><?=$_SESSION['username']?></p>
-<?php } ?>
+      <h1><?=$meta['title']?></h1>
+      <p><?=$meta['description']?></p>
       <hr>
     </header>
     <div class="inner">
-<?php if ($logged_in) { ?>
-      <nav class="docs-sidebar-test">
-        <ul class="nav">
-          <li draggable="true"><a href="/getting-started" draggable="false">Getting Started</a></li>
-          <li draggable="true"><a href="/how-to-install" draggable="false">How to Install</a></li>
-          <li draggable="true"><a href="/commands-and-permissions" draggable="false">Commands and Permissions</a></li>
-          <li draggable="true"><a href="/configuration" draggable="false">Configuration</a>
-            <ul class="subnav">
-              <li draggable="true"><a href="/configuration/config.yml" draggable="false">config.yml</a></li>
-              <li draggable="true"><a href="/configuration/colors.yml" draggable="false">colors.yml</a></li>
-            </ul>
-          </li>
-          <li draggable="true"><a href="/how-to-install" draggable="false">How to Install</a></li>
-        </ul>
-      </nav>
-<?php } else { ?>
-      <nav class="docs-sidebar"><?php
-$first = true;
+      <nav class="docs-sidebar"><ul class="nav"><?php
+$li = false;
 $subnav = false;
-echo '<ul class="nav">';
 foreach ($sections as $section) {
   if ($section['slug'] === 'introduction') {
     continue;
@@ -120,38 +131,21 @@ foreach ($sections as $section) {
       $subnav = false;
       echo '</ul>';
     }
-    if (!$first) {
+    if ($li) {
       echo '</li>';
     }
     echo '<li><a href="/' . $section['slug'] . '">' . $section['title'] . '</a>';
-    $first = false;
+    $li = true;
   }
 }
 if ($subnav) {
-  $subnav = false;
   echo '</ul></li>';
 }
-echo '</ul>';
-?></nav>
-<?php } ?>
+?></ul></nav>
       <div class="content">
-
-<?php if ($logged_in) { ?>
-<section>
-  <div class="form">
-    <label><span>Slug:</span> <input type="text" name="slug" value="slug-value" autocomplete="off"></label><br>
-    <label><span>Title:</span> <input type="text" name="title" value="Title Value" autocomplete="off"></label><br>
-    <label><span>Desc:</span> <input type="text" name="description" value="Description Value" autocomplete="off"></label><br>
-    <textarea name="content">some content</textarea><br>
-    <p><input type="button" name="cancel" value="Cancel"><input type="submit" value="Save"></p>
-  </div>
-</section>
-<?php } ?>
-
 <?php
 foreach ($sections as $section) {
-  $slug = $section['slug'] === 'introduction' ? '' : ' id="' . $section['slug'] . '"';
-  echo '<section' . $slug . '><h2>' . $section['title'] . '</h2><hr class="short"><div>' . $section['content'] . "</div></section>\n";
+  echo '        <section id="' . $section['slug'] . '"><h2>' . $section['title'] . '</h2><hr class="short"><div>' . $section['content'] . "</div></section>\n";
 }
 ?>
         <dialog id="d1"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>

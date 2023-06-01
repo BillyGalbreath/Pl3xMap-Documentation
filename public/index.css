@@ -1,11 +1,3 @@
-:root {
-  --bg-color: #222222;
-  --text-dark: #111111;
-  --text-normal: #aaaaaa;
-  --text-bright: #eeeeee;
-  --accent-color: #0e97ee;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -16,11 +8,11 @@ html,
 body {
   background: var(--bg-color);
   color: var(--text-normal);
+  font-family: var(--font-normal), var(--font-fallback);
   line-height: 31px;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #err {
@@ -62,13 +54,14 @@ body {
 
 header {
   padding: 60px 0 80px;
+  font-family: var(--font-title), var(--font-fallback);
   text-align: center;
 }
 
 header p {
   padding: 15px 0 20px;
+  font-family: var(--font-subtitle), var(--font-fallback);
   font-size: 21px;
-  font-weight: 300;
   line-height: 1.4;
   text-transform: capitalize;
 }
@@ -78,6 +71,7 @@ nav {
   padding: 20px 0 0 20px;
   position: sticky;
   top: 20px;
+  font-family: var(--font-navlinks), var(--font-fallback);
   align-self: flex-start;
   user-select: none;
 }
@@ -96,9 +90,9 @@ nav a {
 
 nav a,
 nav .nav .active .subnav a {
-  font-weight: 400;
   border-left: 1px solid transparent;
   transition: color 0.075s linear;
+  white-space: nowrap;
 }
 
 nav a:hover,
@@ -150,15 +144,15 @@ textarea {
 h1 {
   margin: 20px 0 0;
   font-size: 48px;
-  font-weight: 300;
   line-height: 1.8;
   color: var(--text-bright);
 }
 
 h2 {
   margin: 20px 0 10px;
+  font-family: var(--font-headings), var(--font-fallback);
   font-size: 41px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 41px;
   color: var(--text-bright);
 }
@@ -205,74 +199,8 @@ section {
 section div {
   margin: 50px 0;
   font-size: 15px;
-  font-weight: 400;
   letter-spacing: normal;
   line-height: 26px;
-}
-
-section div.form {
-  line-height: 20px;
-}
-
-section div.form p,
-section div.form label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-  font-weight: 400;
-}
-
-section div.form label span {
-  padding-right: 10px;
-  width: 50px;
-}
-
-section div.form label input {
-  flex-grow: 2;
-  padding: 1px 5px;
-  height: 18px;
-  align-self: center;
-  background-color: #ccc;
-  border: 1px inset;
-}
-
-section div.form textarea[name=content] {
-  width: 100%;
-  height: 35vh;
-  min-height: 100px;
-  max-height: 80vh;
-  resize: vertical;
-  background-color: #ccc;
-  border: 1px inset;
-}
-
-section div.form input[type=button],
-section div.form input[type=submit] {
-  margin: 20px;
-  width: 100px;
-  max-width: 100px;
-  height: 30px;
-  border: 1px outset;
-  border-radius: 5px;
-  box-shadow: 1px 1px 3px #000;
-}
-
-section div.form input[type=button]:focus,
-section div.form input[type=submit]:focus,
-section div.form input[type=button]:hover,
-section div.form input[type=submit]:hover {
-  background-color: #aaa;
-}
-
-section div.form input[type=button].active,
-section div.form input[type=submit].active,
-section div.form input[type=button]:active,
-section div.form input[type=submit]:active {
-  position: relative;
-  top: 1px;
-  left: 1px;
-  background-color: #888;
-  box-shadow: 0 0 1px #000;
 }
 
 #pi {
@@ -319,24 +247,4 @@ footer a img {
   border: 0;
   width: 80px;
   height: 15px;
-}
-
-.dragtobottom a {
-  border-bottom: 1px solid #808080;
-  border-top: 1px solid transparent;
-}
-.dragtomiddle a {
-  background: #808080;
-}
-.dragtotop a {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid #808080;
-}
-
-.dragtobottom li a,
-.dragtomiddle li a,
-.dragtotop li a {
-  background: transparent !important;
-  border-bottom: 1px solid transparent !important;
-  border-top: 1px solid transparent !important;
 }
