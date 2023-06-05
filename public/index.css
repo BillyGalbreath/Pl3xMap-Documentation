@@ -194,10 +194,6 @@ section {
   min-height: 500px;
 }
 
-section:last-child {
-  min-height: 100vh;
-}
-
 section div {
   margin: 50px 0;
   font-size: 15px;
