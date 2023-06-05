@@ -5,6 +5,8 @@ if (!defined('PL3XMAP')) {
   die();
 }
 
+require_once(__DIR__ . '/db.php');
+
 session_start();
 
 $logged_in = isset($_SESSION['username']);
@@ -20,15 +22,16 @@ if ($logged_in && isset($_POST['logout'])) {
   if (isset($username) && isset($password)) {
     $repeat = @$_POST['repeat'];
     if (isset($repeat)) {
-      trySignup($conn, $username, $password, $repeat, $error);
+      trySignup($username, $password, $repeat);
     }
-    tryLogin($conn, $username, $password, $error);
+    tryLogin($username, $password);
   }
   $logged_in = isset($_SESSION['username']);
 }
 
-function tryLogin($conn, $username, $password, &$error) {
-  $user = getUser($conn, $username, $error);
+function tryLogin($username, $password) {
+  global $error;
+  $user = getUser($username);
   if ($user === false) {
     $error = 'Access Denied';
     return; // no user
@@ -45,7 +48,8 @@ function tryLogin($conn, $username, $password, &$error) {
   $_SESSION['username'] = $user['username'];
 }
 
-function trySignup($conn, $username, $password, $repeat, &$error) {
+function trySignup($username, $password, $repeat) {
+  global $error;
   if ($password !== $repeat) {
     $error = 'Error: Passwords don\'t match';
     return; // passwords dont match
@@ -58,14 +62,15 @@ function trySignup($conn, $username, $password, $repeat, &$error) {
     $error = 'Error: Username not valid';
     return; // username not valid
   }
-  if (getUser($conn, $username, $error) !== false) {
+  if (getUser($username) !== false) {
     $error = 'Error: Username taken';
     return; // username already exists
   }
-  createUser($conn, $username, $password, $error);
+  createUser($username, $password);
 }
 
-function getUser($conn, $username, &$error) {
+function getUser($username) {
+  global $conn, $error;
   $sql = 'SELECT * FROM `users` WHERE `username` = ?;';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -84,7 +89,8 @@ function getUser($conn, $username, &$error) {
   }
 }
 
-function createUser($conn, $username, $password, &$error) {
+function createUser($username, $password) {
+  global $conn, $error;
   $sql = 'INSERT INTO `users` (`username`, `password`) VALUES (?, ?);';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {

@@ -5,37 +5,6 @@ if (!defined('PL3XMAP')) {
   die();
 }
 
-require_once(__DIR__ . '/origin.php');
-require_once(__DIR__ . '/db.php');
-require_once(__DIR__ . '/login.php');
-
-$sections = sql($conn, 'SELECT * FROM `content` ORDER BY `order` ASC;');
-
-$meta = array();
-foreach(sql($conn, 'SELECT * FROM `meta`;') as $pair) {
-  $meta[$pair['key']] = $pair['value'];
-}
-
-$og['title'] = $meta['title'];
-$og['url'] = $origin . '/';
-$og['image'] = $origin . '/images/og_large.png';
-$og['large_image'] = true;
-$og['desc'] = str_replace('<br>', ' ', $meta['description']);
-$og['keywords'] = $meta['keywords'];
-
-function minify_css($css) {
-  $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
-  $css = preg_replace('/\s*([{}|:;,])\s+/', '$1', $css);
-  $css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '',$css);
-  return $css;
-}
-
-function minify_js($js) {
-  require_once(__DIR__ . '/Minifier.php');
-  return Minifier::minify($js);
-}
-
-function printHeader($logged_in, $og, $meta) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,6 +44,16 @@ ob_end_flush();
 <body class="line-numbers">
   <button onclick="go()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 <?php
+if (!$logged_in) {
+?>
+  <dialog id="d1"><form method="post" action="/admin"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
+  <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
+<?php
+} else {
+?>
+  <form id="logout" method="post" action="/"><input name="logout" hidden><input type="submit" hidden></form>
+<?php
+}
 if (isset($error)) {
   echo '<p id="err">' . $error . '</p>';
 }
@@ -86,25 +65,3 @@ if (isset($error)) {
       <hr>
     </header>
     <div class="inner">
-<?php
-}
-
-function printFooter($logged_in, $origin_encoded) {
-?>
-    </div>
-  </div>
-  <footer>
-    <p>
-      <a href="https://html5.validator.nu/?doc=<?=$origin_encoded?>" target="_blank"><img src="/images/valid_html5.webp" title="Valid HTML 5" alt="Valid HTML 5"></a>
-      <a href="https://jigsaw.w3.org/css-validator/validator?uri=<?=$origin_encoded?>" target="_blank"><img src="/images/valid_css3.webp" title="Valid CSS 3" alt="Valid CSS 3"></a>
-      <a href="https://html5.validator.nu/?doc=<?=$origin_encoded?>" target="_blank"><img src="/images/valid_svg11.webp" title="Valid SVG 1.1" alt="Valid SVG 1.1"></a>
-    </p>
-    <p>Copyright &copy; 2020-2023 William Blake Galbreath</p>
-  </footer>
-<?php
-  if ($logged_in) {
-    echo '  <div id="pi">X<form method="post" action="/"><input name="logout" hidden><input type="submit" hidden></form></div>';
-  } else {
-    echo '  <div id="pi">&pi;</div>';
-  }
-}

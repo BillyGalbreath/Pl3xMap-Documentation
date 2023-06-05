@@ -2,7 +2,7 @@
 
 define('PL3XMAP', true);
 
-require_once(__DIR__ . '/php/header.php');
+require_once(__DIR__ . '/php/setup.php');
 
 $url = @$_GET['url'];
 if (isset($url)) {
@@ -24,51 +24,16 @@ if (isset($url)) {
   }
 }
 
-printHeader($logged_in, $og, $meta);
-?>
-      <nav class="docs-sidebar"><ul class="nav"><?php
-$li = false;
-$subnav = false;
+require_once(__DIR__ . '/php/header.php');
+require_once(__DIR__ . '/php/navigation.php');
+
+echo '      <div class="content">' . "\n";
 foreach ($sections as $section) {
-  if ($section['slug'] === 'introduction') {
-    continue;
-  }
-  if (str_contains($section['slug'], '/')) {
-    if (!$subnav) {
-      $subnav = true;
-      echo '<ul class="subnav">';
-    }
-    echo '<li><a href="/' . $section['slug'] . '">' . $section['title'] . '</a></li>';
-  } else {
-    if ($subnav) {
-      $subnav = false;
-      echo '</ul>';
-    }
-    if ($li) {
-      echo '</li>';
-    }
-    echo '<li><a href="/' . $section['slug'] . '">' . $section['title'] . '</a>';
-    $li = true;
-  }
-}
-if ($subnav) {
-  echo '</ul></li>';
-}
-?></ul></nav>
-      <div class="content">
-<?php
-foreach ($sections as $section) {
-  echo '        <section id="' . $section['slug'] . '"><h2>' . $section['title'] . '</h2><hr class="short"><div>' . $section['content'] . "</div></section>\n";
+  echo '        <section id="' . $section['slug'] . '"><h2>' . $section['title'] . '</h2><hr class="short"><div>' . $section['content'] . '</div></section>' . "\n";
 }
 echo '      </div>' . "\n";
-if (!$logged_in) {
-?>
-      <dialog id="d1"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
-      <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
-<?php
-}
 
-printFooter($logged_in, $origin_encoded);
+require_once(__DIR__ . '/php/footer.php');
 
 echo  "\n" . '  <script>';
 

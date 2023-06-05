@@ -2,22 +2,20 @@
 
 define('PL3XMAP', true);
 
-require_once(__DIR__ . '/php/login.php');
+require_once(__DIR__ . '/php/setup.php');
 
 if (!$logged_in) {
   header('location: /');
   die();
 }
 
-require_once(__DIR__ . '/php/header.php');
-
 $og['title'] .= ' - Admin';
 
-printHeader($logged_in, $og, $meta);
+require_once(__DIR__ . '/php/header.php');
 
 echo '$url = ' . @$_GET['url'];
 
-printFooter($logged_in, $origin_encoded);
+require_once(__DIR__ . '/php/footer.php');
 
 echo  "\n" . '  <script>';
 ob_start('minify_js');

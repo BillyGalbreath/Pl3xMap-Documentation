@@ -5,7 +5,7 @@ define('PL3XMAP', true);
 require_once(__DIR__ . '/origin.php');
 require_once(__DIR__ . '/db.php');
 
-$sections = sql($conn, 'SELECT * FROM `content` ORDER BY `order` ASC;');
+$sections = sql('SELECT * FROM `content` ORDER BY `order` ASC;');
 
 header('Content-type: application/xml; charset=utf-8');
 

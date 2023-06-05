@@ -26,7 +26,7 @@ function go(id, base = '') {
 };
 function click(e) {
   if (logged_in === true) {
-    pi.querySelector('form').submit()
+    document.querySelector('#logout').submit()
   } else {
     if (modal(e)) document.querySelector(which(e)).showModal()
   }
