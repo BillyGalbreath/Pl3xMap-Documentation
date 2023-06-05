@@ -16,9 +16,9 @@
   --font-fallback: Helvetica, Arial, sans-serif;
 }
 
-@font-face {font-family: 'Poppins';font-style: normal;font-weight: 400;font-display: block;src: url(/font/poppins-latin.woff2) format('woff2')}
-@font-face {font-family: 'Raleway';font-style: normal;font-weight: 400;font-display: block;src: url(/font/raleway-latin.woff2) format('woff2')}
-@font-face {font-family: 'Inter';font-style: normal;font-weight: 400;font-display: block;src: url(/font/inter-latin.woff2) format('woff2')}
+@font-face {font-family: 'Poppins';font-style: normal;font-weight: 400;font-display: block;src: url(/font/poppins.woff2) format('woff2')}
+@font-face {font-family: 'Raleway';font-style: normal;font-weight: 400;font-display: block;src: url(/font/raleway.woff2) format('woff2')}
+@font-face {font-family: 'Inter';font-style: normal;font-weight: 400;font-display: block;src: url(/font/inter.woff2) format('woff2')}
 
 * {
   margin: 0;
