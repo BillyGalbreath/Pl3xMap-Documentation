@@ -67,8 +67,8 @@ function printHeader($logged_in, $og, $meta) {
 ob_start('minify_css');
 require_once(__DIR__ . '/../css/index.css');
 if ($logged_in) echo 'nav .nav .subnav {display: block !important;}';
-require_once(__DIR__ . '/../css/prism-tomorrow.min.css');
-require_once(__DIR__ . '/../css/prism-line-numbers.min.css');
+require_once(__DIR__ . '/../prism/themes/prism-tomorrow.min.css');
+require_once(__DIR__ . '/../prism/plugins/prism-line-numbers.min.css');
 ob_end_flush();
 ?></style>
 </head>
