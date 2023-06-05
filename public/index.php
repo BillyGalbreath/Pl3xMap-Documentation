@@ -2,28 +2,12 @@
 
 define('PL3XMAP', true);
 
-require_once(__DIR__ . '/php/origin.php');
-require_once(__DIR__ . '/php/db.php');
-require_once(__DIR__ . '/php/login.php');
+require_once(__DIR__ . '/php/header.php');
 
-$sections = sql('SELECT * FROM `content` ORDER BY `order` ASC;');
-
-$meta = array();
-foreach(sql('SELECT * FROM `meta`;') as $pair) {
-  $meta[$pair['key']] = $pair['value'];
-}
-
-$og_title = $meta['title'];
-$og_url = $origin . '/';
-$og_image = $origin . '/images/og_large.png';
-$og_large_image = true;
-$og_desc = str_replace('<br>', ' ', $meta['description']);
-$og_keywords = $meta['keywords'];
-
-$id = @$_GET['id'];
-if (isset($id)) {
+$url = @$_GET['url'];
+if (isset($url)) {
   foreach($sections as $section) {
-    if ($section['slug'] !== $id) {
+    if ($section['slug'] !== $url) {
         continue;
     }
     $title = $section['title'];
@@ -31,88 +15,17 @@ if (isset($id)) {
       $parts = explode('/', $title);
       $title = $parts[0] . ' - ' . $parts[1];
     }
-    $og_title .= ' - ' . $title;
-    $og_url .= $section['slug'];
-    $og_image = $origin . '/images/og_small.png';
-    $og_large_image = false;
-    $og_desc = $section['description'];
+    $og['title'] .= ' - ' . $title;
+    $og['url'] .= $section['slug'];
+    $og['image'] = $origin . '/images/og_small.png';
+    $og['large_image'] = false;
+    $og['desc'] = $section['description'];
     break;
   }
 }
-function minify_css($css) {
-  $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
-  $css = preg_replace('/\s*([{}|:;,])\s+/', '$1', $css);
-  $css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '',$css);
-  return $css;
-}
-function minify_js($js) {
-  require_once(__DIR__ . '/php/Minifier.php');
-  return Minifier::minify($js);
-}
-?><!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title><?=$og_title?></title>
-  <meta name="author" content="William Blake Galbreath">
-  <meta name="description" content="<?=$og_desc?>">
-  <meta name="keywords" content="<?=$og_keywords?>">
-  <meta property="og:url" content="<?=$og_url?>">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="<?=$og_title?>">
-  <meta property="og:description" content="<?=$og_desc?>">
-  <?php if (isset($og_image)) { echo '<meta property="og:image" content="' . $og_image . '">' . "\n"; } ?>
-  <?php if ($og_large_image) { echo '<meta name="twitter:card" content="summary_large_image">' . "\n"; } ?>
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#222222">
-  <meta name="darkreader-lock" content="true">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48" crossOrigin="anonymous">
-  <style><?php
-ob_start('minify_css');
+
+printHeader($logged_in, $og, $meta);
 ?>
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700');
-@import url('https://fonts.googleapis.com/css2?family=Cairo');
-@import url('https://fonts.googleapis.com/css2?family=Poppins');
-@import url('https://fonts.googleapis.com/css2?family=Libre Baskerville');
-@import url('https://fonts.googleapis.com/css2?family=Inter');
-
-@import url('https://fonts.googleapis.com/css2?family=Lato');
-@import url('https://fonts.googleapis.com/css2?family=Raleway');
-@import url('https://fonts.googleapis.com/css2?family=Roboto');
-:root {
-  --bg-color: #222222;
-  --text-dark: #111111;
-  --text-normal: #aaaaaa;
-  --text-bright: #eeeeee;
-  --accent-color: #0e97ee;
-
-  --font-title: Quicksand;
-  --font-subtitle: Cairo;
-  --font-navlinks: Poppins;
-  --font-headings: Libre Baskerville;
-  --font-normal: Inter;
-
-  --font-fallback: Helvetica, Arial, sans-serif;
-}
-<?php
-if ($logged_in) echo 'nav .nav .subnav {display: block !important;}';
-require_once(__DIR__ . '/index.css');
-ob_end_flush();
-?></style>
-</head>
-<body>
-  <button onclick="go()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
-  <?php if (isset($error)) echo '<p id="err">' . $error . '</p>'; ?>
-  <div class="wrapper">
-    <header>
-      <h1><?=$meta['title']?></h1>
-      <p><?=$meta['description']?></p>
-      <hr>
-    </header>
-    <div class="inner">
       <nav class="docs-sidebar"><ul class="nav"><?php
 $li = false;
 $subnav = false;
@@ -147,33 +60,26 @@ if ($subnav) {
 foreach ($sections as $section) {
   echo '        <section id="' . $section['slug'] . '"><h2>' . $section['title'] . '</h2><hr class="short"><div>' . $section['content'] . "</div></section>\n";
 }
+if (!$logged_in) {
 ?>
         <dialog id="d1"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
         <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
-      </div>
-    </div>
-  </div>
-  <footer>
-    <p>
-      <a href="https://html5.validator.nu/?doc=<?=$origin_encoded?>" target="_blank"><img src="/images/valid_html5.webp" title="Valid HTML 5" alt="Valid HTML 5"></a>
-      <a href="https://jigsaw.w3.org/css-validator/validator?uri=<?=$origin_encoded?>" target="_blank"><img src="/images/valid_css3.webp" title="Valid CSS 3" alt="Valid CSS 3"></a>
-      <a href="https://html5.validator.nu/?doc=<?=$origin_encoded?>" target="_blank"><img src="/images/valid_svg11.webp" title="Valid SVG 1.1" alt="Valid SVG 1.1"></a>
-    </p>
-    <p>Copyright &copy; 2020-2023 William Blake Galbreath</p>
-  </footer>
-<?php if ($logged_in) { ?>
-  <div id="pi">X<form method="post" action="/"><input name="logout" hidden><input type="submit" hidden></form></div>
-<?php } else { ?>
-  <div id="pi">&pi;</div>
-<?php } ?>
-  <script><?php ob_start('minify_js');require_once(__DIR__ . '/index.js'); ?>
-function click(e) {
-<?php if ($logged_in) { ?>
-  document.querySelector('#pi form').submit()
-<?php } else { ?>
-  if (modal(e)) document.querySelector(which(e)).showModal()
-<?php } ?>
+<?php
 }
-<?php ob_end_flush(); ?></script>
+echo '      </div>' . "\n";
+
+printFooter($logged_in, $origin_encoded);
+
+echo  "\n" . '  <script>';
+
+ob_start('minify_js');
+echo 'setTimeout(() => go(window.location.pathname.substring(1)), 0);';
+echo 'const logged_in = ' . ($logged_in ? 'true' : 'false') . ';';
+require_once(__DIR__ . '/index.js');
+require_once(__DIR__ . '/common.js');
+ob_end_flush();
+
+echo '</script>' . "\n";
+?>
 </body>
 </html>

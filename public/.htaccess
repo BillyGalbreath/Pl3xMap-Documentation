@@ -1,13 +1,20 @@
-Options -Indexes
+Options -Indexes -MultiViews
 
 RewriteEngine On
 
-RewriteRule ^robots\.txt$ /php/robots.php [L]
-RewriteRule ^sitemap\.xml$ /php/sitemap.php [L]
+RewriteRule ^robots\.txt$ /php/robots.php [NC,L]
+RewriteRule ^sitemap\.xml$ /php/sitemap.php [NC,L]
+
+RewriteCond %{REQUEST_URI} ^/admin(.*)$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.*)$ /admin.php?url=$1 [NC,QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule (.*) /index.php?id=$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.*)$ /index.php?url=$1 [NC,QSA,L]
 
 <IfModule mod_deflate.c>
 AddOutputFilterByType DEFLATE application/javascript

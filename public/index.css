@@ -63,7 +63,6 @@ header p {
   font-family: var(--font-subtitle), var(--font-fallback);
   font-size: 21px;
   line-height: 1.4;
-  text-transform: capitalize;
 }
 
 nav {
@@ -183,7 +182,6 @@ a {
 
 .inner {
   display: flex;
-  min-height: 100vh;
 }
 
 .content {
@@ -193,6 +191,10 @@ a {
 }
 
 section {
+  min-height: 500px;
+}
+
+section:last-child {
   min-height: 100vh;
 }
 

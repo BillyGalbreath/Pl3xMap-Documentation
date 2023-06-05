@@ -20,16 +20,15 @@ if ($logged_in && isset($_POST['logout'])) {
   if (isset($username) && isset($password)) {
     $repeat = @$_POST['repeat'];
     if (isset($repeat)) {
-      trySignup($username, $password, $repeat);
+      trySignup($conn, $username, $password, $repeat, $error);
     }
-    tryLogin($username, $password);
+    tryLogin($conn, $username, $password, $error);
   }
   $logged_in = isset($_SESSION['username']);
 }
 
-function tryLogin($username, $password) {
-  global $error;
-  $user = getUser($username);
+function tryLogin($conn, $username, $password, &$error) {
+  $user = getUser($conn, $username, $error);
   if ($user === false) {
     $error = 'Access Denied';
     return; // no user
@@ -46,8 +45,7 @@ function tryLogin($username, $password) {
   $_SESSION['username'] = $user['username'];
 }
 
-function trySignup($username, $password, $repeat) {
-  global $error;
+function trySignup($conn, $username, $password, $repeat, &$error) {
   if ($password !== $repeat) {
     $error = 'Error: Passwords don\'t match';
     return; // passwords dont match
@@ -60,15 +58,14 @@ function trySignup($username, $password, $repeat) {
     $error = 'Error: Username not valid';
     return; // username not valid
   }
-  if (getUser($username) !== false) {
+  if (getUser($conn, $username, $error) !== false) {
     $error = 'Error: Username taken';
     return; // username already exists
   }
-  createUser($username, $password);
+  createUser($conn, $username, $password, $error);
 }
 
-function getUser($username) {
-  global $conn, $error;
+function getUser($conn, $username, &$error) {
   $sql = 'SELECT * FROM `users` WHERE `username` = ?;';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -87,8 +84,7 @@ function getUser($username) {
   }
 }
 
-function createUser($username, $password) {
-  global $conn, $error;
+function createUser($conn, $username, $password, &$error) {
   $sql = 'INSERT INTO `users` (`username`, `password`) VALUES (?, ?);';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {

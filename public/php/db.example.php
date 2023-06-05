@@ -17,8 +17,7 @@ if (!$conn) {
   die('Connection failed: ' . mysqli_connect_error());
 }
 
-function sql($sql) {
-  global $conn;
+function sql($conn, $sql) {
   $arr = array();
   $stmt = mysqli_stmt_init($conn);
   if (mysqli_stmt_prepare($stmt, $sql)) {

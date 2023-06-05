@@ -1,44 +1,24 @@
-const offset = 150;
+let current;
 const topBtn = document.getElementById('topBtn');
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('nav a');
-const pi = document.querySelector('#pi');
-let current;
-setTimeout(() => go(window.location.pathname.substring(1)), 0);
-window.onscroll = function () { onScroll() };
-window.onclick = function (e) {
-  if (!outside(e, pi.getBoundingClientRect())) {
-    click(e)
-  }
-};
-document.querySelectorAll('dialog').forEach(dialog => dialog.onclick = (e) => {
-  if (outside(e, e.target.getBoundingClientRect())) e.target.close()
+const setCur = debounce((cur) => {
+  window.history.replaceState(null, 'title', (current = cur)?.getAttribute('href') ?? '/')
 });
+window.onscroll = function () {
+  onScroll()
+};
 navLinks.forEach(link => {
   link.onclick = (e) => {
     e.preventDefault();
     go(link.getAttribute('href').substring(1))
   }
 });
-const setCur = debounce((cur) => {
-  window.history.replaceState(null, 'title', (current = cur)?.getAttribute('href') ?? '/')
-});
-function keyedButton(e, el) {
-  return el?.matches('input[type=button], input[type=submit]') && (e.keyCode === 32 || e.keyCode === 13)
-};
-function activate(el) {
-  el.classList.add('active');
-  el.onblur = () => deactivate(el)
-};
-function deactivate(el) {
-  el.classList.remove('active');
-  el.onblur = undefined
-};
-function modal(e) {
-  return e.shiftKey && e.ctrlKey
-};
-function outside(e, d) {
-  return e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom
+function check(links, id) {
+  links.push(document.querySelector('nav a[href$=\'' + id + '\']'));
+  if (id?.includes('/')) {
+    check(links, id.substring(0, id.indexOf('/')))
+  }
 };
 function onScroll() {
   if (window.scrollY > 1000) {
@@ -65,28 +45,5 @@ function onScroll() {
   });
   if (current != cur) {
     setCur(cur)
-  }
-};
-function which(e) {
-  return e.altKey ? '#d2' : '#d1'
-};
-function check(links, id) {
-  links.push(document.querySelector('nav a[href$=\'' + id + '\']'));
-  if (id?.includes('/')) {
-    check(links, id.substring(0, id.indexOf('/')))
-  }
-};
-function go(id) {
-  const el = id ? document.getElementById(id) : undefined;
-  const top = (el?.offsetTop ?? 0) - offset / 2;
-  window.scrollTo({ top: top, behavior: 'smooth' });
-  document.documentElement.scrollTo({ top: top, behavior: 'smooth' });
-  window.history.pushState(null, 'title', '/' + (el?.id ?? ''))
-};
-function debounce(func, timeout = 250) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => func.apply(this, args), timeout)
   }
 };
