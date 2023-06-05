@@ -32,6 +32,10 @@ AddOutputFilterByType DEFLATE text/xml
 
 Header set Cache-Control "max-age=300, public"
 
-<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|webp|woff2)$">
+<FilesMatch "\.(ico|png|gif|webp)$">
 Header set Cache-Control "max-age=86400, public"
+</FilesMatch>
+
+<FilesMatch "\.(woff2)$">
+Header set Cache-Control "max-age=31536000, public"
 </FilesMatch>
