@@ -60,13 +60,13 @@ if ($subnav) {
 foreach ($sections as $section) {
   echo '        <section id="' . $section['slug'] . '"><h2>' . $section['title'] . '</h2><hr class="short"><div>' . $section['content'] . "</div></section>\n";
 }
+echo '      </div>' . "\n";
 if (!$logged_in) {
 ?>
-        <dialog id="d1"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
-        <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
+      <dialog id="d1"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
+      <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
 <?php
 }
-echo '      </div>' . "\n";
 
 printFooter($logged_in, $origin_encoded);
 
