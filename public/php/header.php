@@ -36,7 +36,7 @@ function minify_js($js) {
 }
 
 function printHeader($logged_in, $og, $meta) {
-?><!doctype html>
+?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -65,34 +65,14 @@ function printHeader($logged_in, $og, $meta) {
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48" crossOrigin="anonymous">
   <style><?php
 ob_start('minify_css');
-?>
-@import url('https://fonts.googleapis.com/css2?family=Poppins');
-@import url('https://fonts.googleapis.com/css2?family=Raleway');
-@import url('https://fonts.googleapis.com/css2?family=Inter');
-:root {
-  color-scheme: dark;
-
-  --bg-color: #222222;
-  --text-dark: #111111;
-  --text-normal: #aaaaaa;
-  --text-bright: #eeeeee;
-  --accent-color: #0e97ee;
-
-  --font-title: Inter;
-  --font-subtitle: Raleway;
-  --font-navlinks: Poppins;
-  --font-headings: Raleway;
-  --font-normal: Inter;
-
-  --font-fallback: Helvetica, Arial, sans-serif;
-}
-<?php
+require_once(__DIR__ . '/../css/index.css');
 if ($logged_in) echo 'nav .nav .subnav {display: block !important;}';
-require_once(__DIR__ . '/../index.css');
+require_once(__DIR__ . '/../css/prism-tomorrow.min.css');
+require_once(__DIR__ . '/../css/prism-line-numbers.min.css');
 ob_end_flush();
 ?></style>
 </head>
-<body>
+<body class="line-numbers">
   <button onclick="go()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 <?php
 if (isset($error)) {

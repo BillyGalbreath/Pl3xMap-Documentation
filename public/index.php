@@ -75,8 +75,11 @@ echo  "\n" . '  <script>';
 ob_start('minify_js');
 echo 'setTimeout(() => go(window.location.pathname.substring(1)), 0);';
 echo 'const logged_in = ' . ($logged_in ? 'true' : 'false') . ';';
-require_once(__DIR__ . '/index.js');
-require_once(__DIR__ . '/common.js');
+require_once(__DIR__ . '/js/index.js');
+require_once(__DIR__ . '/js/common.js');
+require_once(__DIR__ . '/js/prism-core.min.js');
+require_once(__DIR__ . '/js/prism-line-numbers.min.js');
+require_once(__DIR__ . '/js/prism-css.min.js');
 ob_end_flush();
 
 echo '</script>' . "\n";
