@@ -29,3 +29,9 @@ AddOutputFilterByType DEFLATE text/javascript
 AddOutputFilterByType DEFLATE text/plain
 AddOutputFilterByType DEFLATE text/xml
 </IfModule>
+
+Header set Cache-Control "max-age=300, public"
+
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|webp|woff2)$">
+Header set Cache-Control "max-age=86400, public"
+</FilesMatch>
