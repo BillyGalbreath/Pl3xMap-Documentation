@@ -2,6 +2,7 @@
 
 define('PL3XMAP', true);
 
+$isAdmin = false;
 require_once(__DIR__ . '/php/setup.php');
 
 $url = @$_GET['url'];

@@ -8,9 +8,13 @@ window.onclick = function (e) {
     click(e)
   }
 };
-document.querySelectorAll('dialog').forEach(dialog => dialog.onclick = (e) => {
-    if (outside(e, e.target.getBoundingClientRect())) e.target.close()
-  });
+document.querySelectorAll('dialog').forEach(dialog => {
+  dialog.onclick = (e) => {
+    if (outside(e, e.target.getBoundingClientRect())) {
+      e.target.close()
+    }
+  }
+});
 function which(e) {
   return e.altKey ? '#d2' : '#d1'
 };
@@ -28,7 +32,11 @@ function click(e) {
   if (logged_in === true) {
     document.querySelector('#logout').submit()
   } else {
-    if (modal(e)) document.querySelector(which(e)).showModal()
+    if (modal(e)) {
+      const dialog = document.querySelector(which(e));
+      dialog.showModal();
+      dialog.classList.add('show');
+    }
   }
 };
 function debounce(func, timeout = 250) {

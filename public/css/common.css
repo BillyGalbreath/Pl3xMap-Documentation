@@ -1,0 +1,199 @@
+:root {
+    color-scheme: dark;
+
+    --shadow: rgba(0,0,0,0.5);
+
+    --darkest: #111111;
+    --darker: #222222;
+    --dark: #404040;
+    --bright: #808080;
+    --brighter: #aaaaaa;
+    --brightest: #eeeeee;
+
+    --accent-color: #0e97ee;
+    --accent-color-dark: #0e71af;
+    --accent-color-darker: #094c75;
+
+    --error: #800000;
+
+    --font-title: Inter;
+    --font-subtitle: Raleway;
+    --font-navlinks: Poppins;
+    --font-headings: Raleway;
+    --font-normal: Inter;
+
+    --font-fallback: Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('/font/poppins.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('/font/raleway.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('/font/inter.woff2') format('woff2')
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html,
+body {
+    background: var(--darker);
+    color: var(--brighter);
+    font-family: var(--font-normal), var(--font-fallback);
+    line-height: 31px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+#err {
+    position: fixed;
+    width: 100%;
+    color: var(--brightest);
+    background-color: var(--error);
+    text-align: center;
+}
+
+header {
+    padding: 60px 0 80px;
+    font-family: var(--font-title), var(--font-fallback);
+    text-align: center;
+}
+
+header p {
+    margin: 0 auto;
+    max-width: 575px;
+    padding: 15px 0 20px;
+    font-family: var(--font-subtitle), var(--font-fallback);
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+input[type=text],
+textarea {
+    outline: 0;
+}
+
+h1 {
+    margin: 20px 0 0;
+    font-size: 48px;
+    line-height: 1.8;
+    color: var(--brightest);
+}
+
+h2 {
+    margin: 20px 0 10px;
+    font-family: var(--font-headings), var(--font-fallback);
+    font-size: 41px;
+    font-weight: 400;
+    line-height: 41px;
+    color: var(--brightest);
+}
+
+hr {
+    margin: 40px 0 0;
+    border-top: 1px solid var(--darkest);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: var(--brightest);
+    text-decoration: none;
+}
+
+.wrapper {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.inner {
+    display: flex;
+}
+
+.content {
+    margin: 0 0 0 10px;
+    flex-grow: 2;
+}
+
+#pi {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    cursor: default;
+    font-size: 14px;
+    line-height: 14px;
+    color: var(--darkest);
+    user-select: none;
+}
+
+dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 20px;
+    min-width: 150px;
+    min-height: 50px;
+    background-color: var(--brighter);
+    border: 1px solid var(--darkest);
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px var(--shadow);
+    z-index: 10;
+}
+
+dialog input {
+    width: 150px;
+    text-align: center;
+    background-color: var(--brighter);
+    border: 1px solid var(--darkest);
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(5px);
+}
+
+footer {
+    border: 0;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+footer a img {
+    border: 0;
+    width: 80px;
+    height: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+    h2 {
+        text-align: center;
+    }
+    .content {
+        margin: 0 40px;
+    }
+    #pi {
+        display: none;
+    }
+}

@@ -34,24 +34,32 @@ if (!defined('PL3XMAP')) {
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48" crossOrigin="anonymous">
   <style><?php
 ob_start('minify_css');
-require_once(__DIR__ . '/../css/index.css');
-if ($logged_in) echo 'nav .nav .subnav {display: block !important;}';
+require_once(__DIR__ . '/../css/common.css');
+if ($logged_in && $isAdmin) {
+  require_once(__DIR__ . '/../css/admin.css');
+} else {
+  require_once(__DIR__ . '/../css/index.css');
+}
 require_once(__DIR__ . '/../prism/themes/prism-tomorrow.min.css');
 require_once(__DIR__ . '/../prism/plugins/prism-line-numbers.min.css');
 ob_end_flush();
 ?></style>
 </head>
 <body class="line-numbers">
+<?php
+if (!$isAdmin) {
+?>
   <button onclick="go()" id="topBtn" title="Go to top"><svg width="32" height="38" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 <?php
-if (!$logged_in) {
+}
+if ($logged_in) {
 ?>
-  <dialog id="d1"><form method="post" action="/admin"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
-  <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
+  <form id="logout" method="post" action="/"><input name="logout" hidden><input type="submit" hidden></form>
 <?php
 } else {
 ?>
-  <form id="logout" method="post" action="/"><input name="logout" hidden><input type="submit" hidden></form>
+  <dialog id="d1"><form method="post" action="/admin"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
+  <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
 <?php
 }
 if (isset($error)) {

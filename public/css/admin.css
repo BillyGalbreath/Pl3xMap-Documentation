@@ -1,0 +1,83 @@
+.content {
+    display: block;
+    margin: 0 0 100px 0;
+}
+
+.buttons {
+    text-align: right;
+}
+
+.addBtn {
+    position: relative;
+    top: -1px;
+    left: -1px;
+    margin: 0 0 30px 0;
+    padding: 10px 18px;
+    font-family: var(--font-title), var(--font-fallback);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    color: var(--brightest);
+    background-color: var(--accent-color);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px var(--shadow);
+}
+
+.addBtn svg {
+    margin: 0 10px 0 0;
+    width: 18px;
+    height: 18px;
+    vertical-align: text-top;
+    fill: currentColor;
+}
+
+.addBtn:hover,
+.addBtn:focus {
+    background-color: var(--accent-color-dark);
+}
+
+.addBtn:active {
+    top: 0;
+    left: 0;
+    background-color: var(--accent-color-darker);
+    box-shadow: 1px 1px 1px var(--shadow);
+}
+
+.content ul {
+    border: 1px solid var(--darkest);
+}
+
+.page_entry {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 10px;
+    height: 40px;
+    line-height: 40px;
+    background-color: var(--brighter);
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.page_entry div {
+    min-width: 250px;
+    color: var(--darkest);
+}
+
+.page_entry div:first-child {
+    min-width: 32px;
+    cursor: grab; /*row-resize;*/
+}
+
+.page_entry div:first-child svg {
+    margin: 0 15px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.page_entry div:last-child {
+    flex-grow: 2;
+}
