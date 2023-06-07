@@ -1,8 +1,7 @@
 const btn = document.querySelector('.addBtn');
+const d0 = document.querySelector('#d0');
 btn.onclick = (e) => {
     e.preventDefault();
     btn.blur();
-    d0.showModal();
+    openDialog(d0)
 };
-const d0 = document.querySelector('#d0');
-d0.showModal();

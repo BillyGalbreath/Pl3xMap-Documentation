@@ -1,7 +1,7 @@
 :root {
     color-scheme: dark;
 
-    --shadow: rgba(0,0,0,0.5);
+    --shadow: rgba(0, 0, 0, 0.5);
 
     --darkest: #111111;
     --darker: #222222;
@@ -49,6 +49,20 @@
     src: url('/font/inter.woff2') format('woff2')
 }
 
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 20px;
+    border: transparent;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -64,6 +78,11 @@ body {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0;
+}
+
+body:has(dialog[open]) {
+    overflow: hidden;
+    padding-right: 9px;
 }
 
 #err {
@@ -162,6 +181,20 @@ dialog {
     border-radius: 20px;
     box-shadow: 3px 3px 3px var(--shadow);
     z-index: 10;
+    opacity: 0;
+    transition: opacity 250ms;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 250ms;
+}
+
+dialog.show,
+dialog.show::backdrop {
+    opacity: 1;
 }
 
 dialog input {
@@ -169,10 +202,6 @@ dialog input {
     text-align: center;
     background-color: var(--brighter);
     border: 1px solid var(--darkest);
-}
-
-dialog::backdrop {
-    backdrop-filter: blur(5px);
 }
 
 footer {
@@ -191,9 +220,11 @@ footer a img {
     h2 {
         text-align: center;
     }
+
     .content {
         margin: 0 40px;
     }
+
     #pi {
         display: none;
     }

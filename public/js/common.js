@@ -5,13 +5,13 @@ function outside(e, d) {
 };
 window.onclick = function (e) {
   if (!outside(e, pi.getBoundingClientRect())) {
-    click(e)
+    clickPi(e)
   }
 };
 document.querySelectorAll('dialog').forEach(dialog => {
   dialog.onclick = (e) => {
     if (outside(e, e.target.getBoundingClientRect())) {
-      e.target.close()
+      closeDialog(e.target)
     }
   }
 });
@@ -28,15 +28,23 @@ function go(id, base = '') {
   document.documentElement.scrollTo({ top: top, behavior: 'smooth' });
   window.history.pushState(null, 'title', '/' + base + (el?.id ?? ''))
 };
-function click(e) {
+function closeDialog(dialog) {
+  dialog.classList.remove('show');
+  dialog.addEventListener("transitionend", reallyCloseDialog)
+};
+function openDialog(dialog) {
+  dialog.showModal();
+  dialog.classList.add('show')
+};
+function reallyCloseDialog(e) {
+  e.target.close();
+  e.target.removeEventListener("transitionend", reallyCloseDialog)
+};
+function clickPi(e) {
   if (logged_in === true) {
     document.querySelector('#logout').submit()
-  } else {
-    if (modal(e)) {
-      const dialog = document.querySelector(which(e));
-      dialog.showModal();
-      dialog.classList.add('show');
-    }
+  } else if (modal(e)) {
+    openDialog(document.querySelector(which(e)))
   }
 };
 function debounce(func, timeout = 250) {
