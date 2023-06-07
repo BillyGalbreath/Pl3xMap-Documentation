@@ -9,6 +9,10 @@ window.onclick = function (e) {
   }
 };
 document.querySelectorAll('dialog').forEach(dialog => {
+  dialog.addEventListener('cancel', (e) => {
+    e.preventDefault();
+    closeDialog(e.target)
+  });
   dialog.onclick = (e) => {
     if (outside(e, e.target.getBoundingClientRect())) {
       closeDialog(e.target)
