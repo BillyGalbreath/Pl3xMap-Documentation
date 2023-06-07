@@ -14,9 +14,18 @@ $og['title'] .= ' - Admin';
 
 require_once(__DIR__ . '/php/header.php');
 ?>
-      <dialog id="d0"></dialog>
+      <dialog id="d0">
+        <form method="post" action="/admin">
+          <label><span>Slug:</span><input type="text" name="" autocomplete="off"></label>
+          <label><span>Title:</span><input type="text" name="" autocomplete="off"></label>
+          <label><span>Desc:</span><input type="text" name="" autocomplete="off"></label>
+          <label><span>Content:</span><div><textarea></textarea></div></label>
+          <div class="buttons"><button id="cancelBtn"><span>Cancel</span></button><button id="saveBtn"><span>Save</span></button></div>
+        </form>
+        <svg viewBox="0 0 32 32"><path stroke="#000000" stroke-width="2" stroke-linecap="round" d="M1 30 30 1M16 30 30 16"/></svg>
+      </dialog>
       <div class="content">
-        <div class="buttons"><button class="addBtn"><svg viewBox="0 0 1024 1024"><path d="M467.627 468H235.489c-24.3 0-44 19.7-44 44s19.7 44 44 44h232.138v232.138c0 24.3 19.7 44 44 44s44-19.7 44-44V556h232.138c24.3 0 44-19.7 44-44s-19.7-44-44-44H555.627V235.862c0-24.3-19.7-44-44-44s-44 19.7-44 44V468zM512 1024C229.23 1024 0 794.77 0 512S229.23 0 512 0s512 229.23 512 512-229.23 512-512 512z"/></svg><span>Add New</span></button></div>
+        <div class="buttons"><div></div><button id="addBtn"><svg viewBox="0 0 1024 1024"><path d="M467.627 468H235.489c-24.3 0-44 19.7-44 44s19.7 44 44 44h232.138v232.138c0 24.3 19.7 44 44 44s44-19.7 44-44V556h232.138c24.3 0 44-19.7 44-44s-19.7-44-44-44H555.627V235.862c0-24.3-19.7-44-44-44s-44 19.7-44 44V468zM512 1024C229.23 1024 0 794.77 0 512S229.23 0 512 0s512 229.23 512 512-229.23 512-512 512z"/></svg><span>Add New</span></button></div>
 <?php
 echo '        <ul>' . "\n";
 foreach ($sections as $section) {
@@ -34,7 +43,7 @@ echo '      </div>' . "\n";
 
 require_once(__DIR__ . '/php/footer.php');
 
-echo  "\n" . '  <script>';
+echo  '  <script>';
 ob_start('minify_js');
 echo 'setTimeout(() => go(window.location.pathname.split(\'/admin/\')[1], \'admin\'), 0);';
 echo 'const logged_in = ' . ($logged_in ? 'true' : 'false') . ';';

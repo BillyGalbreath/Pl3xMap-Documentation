@@ -177,8 +177,8 @@ dialog {
     min-width: 150px;
     min-height: 50px;
     background-color: var(--brighter);
-    border: 1px solid var(--darkest);
-    border-radius: 20px;
+    border: 1px outset var(--bright);
+    border-radius: 10px;
     box-shadow: 3px 3px 3px var(--shadow);
     z-index: 10;
     opacity: 0;

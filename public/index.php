@@ -36,7 +36,7 @@ echo '      </div>' . "\n";
 
 require_once(__DIR__ . '/php/footer.php');
 
-echo  "\n" . '  <script>';
+echo  '  <script>';
 
 ob_start('minify_js');
 echo 'setTimeout(() => go(window.location.pathname.substring(1)), 0);';
