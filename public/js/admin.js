@@ -14,3 +14,5 @@ cancelBtn.onclick = (e) => {
     cancelBtn.blur();
     closeDialog(d0)
 };
+
+//openDialog(d0);

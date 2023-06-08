@@ -86,12 +86,16 @@
 }
 
 #d0 {
-    display: flex;
+    display: none;
     width: 600px;
     min-width: 300px;
     height: 400px;
     min-height: 300px;
     resize: both;
+}
+
+#d0[open] {
+    display: flex;
 }
 
 #d0::-webkit-resizer {
