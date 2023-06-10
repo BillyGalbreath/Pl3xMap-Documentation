@@ -63,6 +63,10 @@
     cursor: pointer;
 }
 
+.page_entry:hover {
+    background-color: var(--brighter2);
+}
+
 .page_entry div {
     min-width: 250px;
     color: var(--darkest);
@@ -71,7 +75,6 @@
 .page_entry div:first-child {
     min-width: 32px;
     cursor: grab;
-    /*row-resize;*/
 }
 
 .page_entry div:first-child svg {
