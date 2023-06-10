@@ -3,6 +3,7 @@ const topBtn = document.getElementById('topBtn');
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('nav a');
 const setCur = debounce((cur) => {
+  document.title = cur ? title + ' - ' + htmlDecode(cur.innerHTML) : title;
   window.history.replaceState(null, 'title', (current = cur)?.getAttribute('href') ?? '/')
 });
 window.onscroll = function () {
@@ -19,6 +20,9 @@ function check(links, id) {
   if (id?.includes('/')) {
     check(links, id.substring(0, id.indexOf('/')))
   }
+};
+function htmlDecode(input) {
+  return new DOMParser().parseFromString(input, "text/html").documentElement.textContent
 };
 function onScroll() {
   if (window.scrollY > 1000) {

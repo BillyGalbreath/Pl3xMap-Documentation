@@ -35,12 +35,14 @@ foreach ($sections as $section) {
 echo '      </div>' . "\n";
 
 require_once(__DIR__ . '/php/footer.php');
-
-echo  '  <script>';
-
+?>
+  <script><?php
 ob_start('minify_js');
-echo 'setTimeout(() => go(window.location.pathname.substring(1)), 0);';
-echo 'const logged_in = ' . ($logged_in ? 'true' : 'false') . ';';
+?>
+setTimeout(() => go(window.location.pathname.substring(1)), 0);
+const logged_in = <?=$logged_in ? 'true' : 'false'?>;
+const title = '<?=$meta['title']?>';
+<?php
 require_once(__DIR__ . '/js/index.js');
 require_once(__DIR__ . '/js/common.js');
 require_once(__DIR__ . '/prism/components/prism-core.min.js');
@@ -48,8 +50,6 @@ require_once(__DIR__ . '/prism/components/prism-css.min.js');
 //require_once(__DIR__ . '/prism/plugins/prism-autoloader.min.js');
 require_once(__DIR__ . '/prism/plugins/prism-line-numbers.min.js');
 ob_end_flush();
-
-echo '</script>' . "\n";
-?>
+?></script>
 </body>
 </html>

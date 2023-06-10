@@ -12,14 +12,53 @@ if (!$logged_in) {
 $isAdmin = true;
 $og['title'] .= ' - Admin';
 
-if (count($_POST) > 0) {
-  var_dump($_POST);
+if (count($_POST) > 0 && isset($_POST['isNew'])) {
+  if (filter_var($_POST['isNew'], FILTER_VALIDATE_BOOLEAN)) {
+    createPage(
+      count($sections) + 1,
+      $_POST['slug'],
+      $_POST['title'],
+      $_POST['description'],
+      $_POST['content']
+    );
+  } else {
+    editPage(
+      filter_var($_POST['pageId'], FILTER_VALIDATE_INT),
+      $_POST['slug'],
+      $_POST['title'],
+      $_POST['description'],
+      $_POST['content']
+    );
+  }
   header('HTTP/1.1 303 See Other');
   header('location: /admin');
   die();
 }
 
 require_once(__DIR__ . '/php/header.php');
+
+function createPage($order, $slug, $title, $description, $content) {
+  global $conn;
+  $sql = 'INSERT INTO `content` (`order`, `slug`, `title`, `description`, `content`) VALUES (?, ?, ?, ?, ?);';
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $sql)) {
+    return; // failed
+  }
+  mysqli_stmt_bind_param($stmt, 'issss', $order, $slug, $title, $description, $content);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_close($stmt);
+}
+function editPage($id, $slug, $title, $description, $content) {
+  global $conn;
+  $sql = 'UPDATE `content` SET `slug` = ?, `title` = ?, `description` = ?, `content` = ? WHERE `id` = ?;';
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $sql)) {
+    return; // failed
+  }
+  mysqli_stmt_bind_param($stmt, 'ssssi', $slug, $title, $description, $content, $id);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_close($stmt);
+}
 ?>
       <dialog id="d0">
         <form method="post" action="/admin">
