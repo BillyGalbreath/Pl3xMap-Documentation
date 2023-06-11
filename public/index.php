@@ -47,6 +47,7 @@ require_once(__DIR__ . '/js/index.js');
 require_once(__DIR__ . '/js/common.js');
 require_once(__DIR__ . '/prism/components/prism-core.min.js');
 require_once(__DIR__ . '/prism/components/prism-css.min.js');
+require_once(__DIR__ . '/prism/components/prism-yaml.min.js');
 //require_once(__DIR__ . '/prism/plugins/prism-autoloader.min.js');
 require_once(__DIR__ . '/prism/plugins/prism-line-numbers.min.js');
 ob_end_flush();
