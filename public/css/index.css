@@ -122,7 +122,7 @@ section p {
 }
 
 section pre:has(code) {
-    max-height: 600px !important;
+    max-height: 600px;
     overflow: auto;
 }
 
