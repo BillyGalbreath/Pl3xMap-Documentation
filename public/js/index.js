@@ -15,6 +15,14 @@ navLinks.forEach(link => {
     go(link.getAttribute('href').substring(1))
   }
 });
+document.querySelectorAll('pre code').forEach(element => {
+  element.innerHTML = element.innerHTML
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;")
+});
 function check(links, id) {
   links.push(document.querySelector('nav a[href$=\'' + id + '\']'));
   if (id?.includes('/')) {
