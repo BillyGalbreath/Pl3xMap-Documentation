@@ -1,5 +1,7 @@
 Options -Indexes -MultiViews
 
+RedirectMatch 403 ^/.+\.(css|js)$
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
