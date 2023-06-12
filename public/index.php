@@ -30,7 +30,7 @@ require_once(__DIR__ . '/php/navigation.php');
 
 echo '      <div class="content">' . "\n";
 foreach ($sections as $section) {
-  echo '        <section id="' . $section['slug'] . '"><h2>' . $section['title'] . '</h2><hr class="short"><div>' . $section['content'] . '</div></section>' . "\n";
+  echo '        <section id="' . $section['slug'] . '"><h2>' . $section['title'] . '</h2><hr class="short"><div class="pageContent"><!--' . $section['content'] . '--></div></section>' . "\n";
 }
 echo '      </div>' . "\n";
 
