@@ -74,7 +74,7 @@ function editPage($id, $slug, $title, $description, $content) {
       </dialog>
       <div class="content">
         <div class="buttons"><div></div><button id="addBtn"><svg viewBox="0 0 1024 1024"><path d="M467.627 468H235.489c-24.3 0-44 19.7-44 44s19.7 44 44 44h232.138v232.138c0 24.3 19.7 44 44 44s44-19.7 44-44V556h232.138c24.3 0 44-19.7 44-44s-19.7-44-44-44H555.627V235.862c0-24.3-19.7-44-44-44s-44 19.7-44 44V468zM512 1024C229.23 1024 0 794.77 0 512S229.23 0 512 0s512 229.23 512 512-229.23 512-512 512z"/></svg><span>Add New</span></button></div>
-        <ul>
+        <ul id="pages">
 <?php
 foreach ($sections as $section) {
 ?>

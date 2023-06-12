@@ -1,5 +1,4 @@
 const offset = 150;
-const pi = document.querySelector('#pi');
 function outside(e, d) {
   return e.clientX < d.left || e.clientX > d.right || e.clientY < d.top || e.clientY > d.bottom
 };
@@ -20,7 +19,7 @@ document.querySelectorAll('dialog').forEach(dialog => {
   }
 });
 function which(e) {
-  return e.altKey ? '#d2' : '#d1'
+  return e.altKey ? d2 : d1
 };
 function modal(e) {
   return e.shiftKey && e.ctrlKey
@@ -48,9 +47,9 @@ function reallyCloseDialog(e) {
 };
 function clickPi(e) {
   if (logged_in === true) {
-    document.querySelector('#logout').submit()
+    logout.submit()
   } else if (modal(e)) {
-    openDialog(document.querySelector(which(e)))
+    openDialog(which(e))
   }
 };
 function debounce(func, timeout = 250) {

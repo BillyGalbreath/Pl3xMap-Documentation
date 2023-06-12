@@ -67,6 +67,10 @@
     background-color: var(--brighter2);
 }
 
+.page.dragging {
+    background-color: var(--bright);
+}
+
 .page div {
     min-width: 250px;
     color: var(--darkest);

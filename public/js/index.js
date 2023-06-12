@@ -1,5 +1,4 @@
 let current;
-const topBtn = document.getElementById('topBtn');
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('nav a');
 const setCur = debounce((cur) => {

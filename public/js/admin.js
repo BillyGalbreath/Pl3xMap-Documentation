@@ -1,16 +1,6 @@
-const addBtn = document.querySelector('#addBtn');
-const cancelBtn = document.querySelector('#cancelBtn');
-const isNew = document.querySelector('#isNew');
-const d0 = document.querySelector('#d0');
-const pageId = document.querySelector('#pageId');
-const slug = document.querySelector('#slug');
-const title = document.querySelector('#title');
-const description = document.querySelector('#description');
-const content = document.querySelector('#content');
-
 addBtn.onclick = (e) => {
   e.preventDefault();
-  addBtn.blur();
+  e.target.blur();
   pageId.value = -1;
   slug.value = '';
   title.value = '';
@@ -22,12 +12,12 @@ addBtn.onclick = (e) => {
 
 cancelBtn.onclick = (e) => {
   e.preventDefault();
-  cancelBtn.blur();
+  e.target.blur();
   closeDialog(d0)
 };
 
-let skipParent;
-document.querySelectorAll('.page').forEach(li => {
+let curDrag;
+pages.querySelectorAll('li.page').forEach(li => {
   li.onclick = () => {
     pageId.value = li.children[1].innerHTML;
     slug.value = li.children[3].innerHTML;
@@ -39,20 +29,32 @@ document.querySelectorAll('.page').forEach(li => {
   };
   const handle = li.querySelector('div:first-child');
   handle.addEventListener('dragstart', (e) => {
-    console.log("start", e);
     e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.dropEffect = "move";
     e.dataTransfer.setDragImage(li, e.offsetX, e.offsetY);
+    li.classList.add('dragging')
   });
-  handle.addEventListener('dragend', (e) => {
-    console.log("end", e);
+  handle.addEventListener('dragend', () => {
+    li.classList.remove('dragging');
+    const arr = [];
+    pages.querySelectorAll('li').forEach(page => {
+      arr.push(Number(page.children[1].innerHTML))
+    });
+    console.log('order', arr)
   });
-  if (skipParent) {
-    return; // only add one event to parent element
-  };
-  skipParent = true;
-  li.parentElement.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    //console.log(e);
+});
+pages.addEventListener('dragenter', (e) => {
+  e.preventDefault()
+});
+pages.addEventListener('dragleave', (e) => {
+  e.preventDefault()
+});
+pages.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  const next = [...pages.querySelectorAll('li.page:not(.dragging)')].find(li => {
+    const box = li.getBoundingClientRect();
+    return e.clientY <= box.top + box.height / 2
   });
+  if (curDrag !== next) {
+    pages.insertBefore(document.querySelector('li.dragging'), curDrag = next)
+  }
 });
