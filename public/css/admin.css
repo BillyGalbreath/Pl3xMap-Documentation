@@ -49,7 +49,7 @@
     border: 1px solid var(--darkest);
 }
 
-.page_entry {
+.page {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -63,28 +63,29 @@
     cursor: pointer;
 }
 
-.page_entry:hover {
+.page:hover {
     background-color: var(--brighter2);
 }
 
-.page_entry div {
+.page div {
     min-width: 250px;
     color: var(--darkest);
 }
 
-.page_entry div:first-child {
+.page div:first-child {
     min-width: 32px;
     cursor: grab;
 }
 
-.page_entry div:first-child svg {
+.page div:first-child svg {
     margin: 0 15px;
     width: 16px;
     height: 16px;
     vertical-align: middle;
+    pointer-events: none;
 }
 
-.page_entry div:last-child {
+.page div:last-child {
     flex-grow: 2;
 }
 
@@ -155,7 +156,7 @@
 }
 
 #d0 label input,
-#d0 label div {
+#d0 label textarea {
     display: inline-block;
 }
 

@@ -67,7 +67,7 @@ function editPage($id, $slug, $title, $description, $content) {
           <label><span>Slug:</span><input type="text" id="slug" name="slug" autocomplete="off"></label>
           <label><span>Title:</span><input type="text" id="title" name="title" autocomplete="off"></label>
           <label><span>Desc:</span><input type="text" id="description" name="description" autocomplete="off"></label>
-          <label><span>Content:</span><div><textarea id="content" name="content"></textarea></div></label>
+          <label><span>Content:</span><textarea id="content" name="content"></textarea></label>
           <div class="buttons"><button id="cancelBtn"><span>Cancel</span></button><button id="saveBtn"><span>Save</span></button></div>
         </form>
         <svg viewBox="0 0 32 32"><path stroke="#000000" stroke-width="2" stroke-linecap="round" d="M1 30 30 1M16 30 30 16"/></svg>
@@ -78,10 +78,10 @@ function editPage($id, $slug, $title, $description, $content) {
 <?php
 foreach ($sections as $section) {
 ?>
-          <li class="page_entry" id="<?=$section['slug']?>">
-            <div><svg viewBox="0 0 24 24"><path d="M3 15h18M3 9h18" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <li class="page" id="<?=$section['slug']?>">
+            <div draggable="true"><svg viewBox="0 0 24 24"><path d="M3 15h18M3 9h18" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg></div>
             <div style='display:none'><?=$section['id']?></div>
-            <div style='display:none'><?=$section['content']?></div>
+            <div style='display:none'><!--<?=$section['content']?>--></div>
             <div><?=$section['slug']?></div>
             <div><?=$section['title']?></div>
             <div><?=$section['description']?></div>

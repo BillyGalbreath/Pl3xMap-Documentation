@@ -34,11 +34,13 @@ function go(id, base = '') {
 };
 function closeDialog(dialog) {
   dialog.classList.remove('show');
-  dialog.addEventListener("transitionend", reallyCloseDialog)
+  dialog.addEventListener("transitionend", reallyCloseDialog);
+  document.body.classList.remove('dialog-open')
 };
 function openDialog(dialog) {
   dialog.showModal();
-  dialog.classList.add('show')
+  dialog.classList.add('show');
+  document.body.classList.add('dialog-open')
 };
 function reallyCloseDialog(e) {
   e.target.close();

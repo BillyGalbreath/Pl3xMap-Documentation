@@ -26,15 +26,33 @@ cancelBtn.onclick = (e) => {
   closeDialog(d0)
 };
 
-const entries = document.querySelectorAll('.page_entry');
-entries.forEach(entry => {
-  entry.onclick = (e) => {
-    pageId.value = entry.children[1].innerHTML;
-    slug.value = entry.children[3].innerHTML;
-    title.value = entry.children[4].innerHTML;
-    description.value = entry.children[5].innerHTML;
-    content.value = entry.children[2].innerHTML;
+let skipParent;
+document.querySelectorAll('.page').forEach(li => {
+  li.onclick = () => {
+    pageId.value = li.children[1].innerHTML;
+    slug.value = li.children[3].innerHTML;
+    title.value = li.children[4].innerHTML;
+    description.value = li.children[5].innerHTML;
+    content.value = li.children[2].innerHTML?.slice(4, -3);
     isNew.value = false;
     openDialog(d0)
-  }
+  };
+  const handle = li.querySelector('div:first-child');
+  handle.addEventListener('dragstart', (e) => {
+    console.log("start", e);
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.dropEffect = "move";
+    e.dataTransfer.setDragImage(li, e.offsetX, e.offsetY);
+  });
+  handle.addEventListener('dragend', (e) => {
+    console.log("end", e);
+  });
+  if (skipParent) {
+    return; // only add one event to parent element
+  };
+  skipParent = true;
+  li.parentElement.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    //console.log(e);
+  });
 });

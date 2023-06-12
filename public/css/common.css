@@ -81,7 +81,7 @@ body {
     letter-spacing: 0;
 }
 
-body:has(dialog[open]) {
+body.dialog-open {
     overflow: hidden;
     padding-right: 9px;
 }
