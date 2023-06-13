@@ -12,23 +12,24 @@ if (!$logged_in) {
 $isAdmin = true;
 $og['title'] .= ' - Admin';
 
-if (count($_POST) > 0 && isset($_POST['isNew'])) {
-  if (filter_var($_POST['isNew'], FILTER_VALIDATE_BOOLEAN)) {
-    createPage(
-      count($sections) + 1,
-      $_POST['slug'],
-      $_POST['title'],
-      $_POST['description'],
-      $_POST['content']
-    );
-  } else {
-    editPage(
-      filter_var($_POST['pageId'], FILTER_VALIDATE_INT),
-      $_POST['slug'],
-      $_POST['title'],
-      $_POST['description'],
-      $_POST['content']
-    );
+if (count($_POST) > 0) {
+  if (isset($_POST['isNew'])) {
+    var_dump($_POST);
+    if (filter_var($_POST['isNew'], FILTER_VALIDATE_BOOLEAN)) {
+      sql('INSERT INTO `content` (`order`, `slug`, `title`, `description`, `content`) VALUES (?, ?, ?, ?, ?);', 'issss',
+        count($sections) + 1, $_POST['slug'], $_POST['title'], $_POST['description'], $_POST['content']);
+    } else {
+      $row = sql('UPDATE `content` SET `slug` = ?, `title` = ?, `description` = ?, `content` = ? WHERE `id` = ?;', 'ssssi',
+        $_POST['slug'], $_POST['title'], $_POST['description'], $_POST['content'], filter_var($_POST['pageId'], FILTER_VALIDATE_INT));
+        var_dump($row);
+    }
+  } else if (isset($_POST['pageIds'])) {
+    $pageIds = json_decode('[' . $_POST['pageIds'] . ']', true);
+    for($i = 0; $i < count($pageIds); $i++) {
+      sql('UPDATE `content` SET `order` = ? WHERE `id` = ?;', 'ii', $i + 1, $pageIds[$i]);
+    }
+  } else if (isset($_POST['delete'])) {
+    sql('DELETE FROM `content` WHERE `id` = ?', 'i', filter_var($_POST['delete'], FILTER_VALIDATE_INT));
   }
   header('HTTP/1.1 303 See Other');
   header('location: /admin');
@@ -36,29 +37,6 @@ if (count($_POST) > 0 && isset($_POST['isNew'])) {
 }
 
 require_once(__DIR__ . '/php/header.php');
-
-function createPage($order, $slug, $title, $description, $content) {
-  global $conn;
-  $sql = 'INSERT INTO `content` (`order`, `slug`, `title`, `description`, `content`) VALUES (?, ?, ?, ?, ?);';
-  $stmt = mysqli_stmt_init($conn);
-  if (!mysqli_stmt_prepare($stmt, $sql)) {
-    return; // failed
-  }
-  mysqli_stmt_bind_param($stmt, 'issss', $order, $slug, $title, $description, $content);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
-}
-function editPage($id, $slug, $title, $description, $content) {
-  global $conn;
-  $sql = 'UPDATE `content` SET `slug` = ?, `title` = ?, `description` = ?, `content` = ? WHERE `id` = ?;';
-  $stmt = mysqli_stmt_init($conn);
-  if (!mysqli_stmt_prepare($stmt, $sql)) {
-    return; // failed
-  }
-  mysqli_stmt_bind_param($stmt, 'ssssi', $slug, $title, $description, $content, $id);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
-}
 ?>
       <dialog id="d0">
         <form method="post" action="/admin">
@@ -68,7 +46,7 @@ function editPage($id, $slug, $title, $description, $content) {
           <label><span>Title:</span><input type="text" id="title" name="title" autocomplete="off"></label>
           <label><span>Desc:</span><input type="text" id="description" name="description" autocomplete="off"></label>
           <label><span>Content:</span><textarea id="content" name="content"></textarea></label>
-          <div class="buttons"><button id="cancelBtn"><span>Cancel</span></button><button id="saveBtn"><span>Save</span></button></div>
+          <div class="buttons"><button id="cancelBtn"><span>Cancel</span></button><button id="deleteBtn"><span>Delete</span></button><button id="saveBtn"><span>Save</span></button></div>
         </form>
         <svg viewBox="0 0 32 32"><path stroke="#000000" stroke-width="2" stroke-linecap="round" d="M1 30 30 1M16 30 30 16"/></svg>
       </dialog>

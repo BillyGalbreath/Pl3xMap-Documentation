@@ -58,12 +58,12 @@ if ($logged_in) {
 <?php
 } else {
 ?>
-  <dialog id="d1"><form method="post" action="/admin"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
+  <dialog id="d1"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><input type="submit" hidden></form></dialog>
   <dialog id="d2"><form method="post" action="/"><input type="text" name="username" autocomplete="off"><br><input type="password" name="password" autocomplete="off"><br><input type="password" name="repeat" autocomplete="off"><input type="submit" hidden></form></dialog>
 <?php
 }
-if (isset($error)) {
-  echo '<p id="err">' . $error . '</p>';
+if (isset($_SESSION['error'])) {
+  echo '<p id="err">' . $_SESSION['error'] . '</p>';
 }
 ?>
   <div class="wrapper">

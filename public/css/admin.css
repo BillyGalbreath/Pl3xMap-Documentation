@@ -201,3 +201,7 @@
 #d0 button {
     margin: 10px 0 5px 0;
 }
+
+#d0 button#deleteBtn {
+    background-color: var(--error);
+}

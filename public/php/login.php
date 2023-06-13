@@ -10,7 +10,7 @@ require_once(__DIR__ . '/db.php');
 session_start();
 
 $logged_in = isset($_SESSION['username']);
-$error = null;
+unset($_SESSION['error']);
 
 if ($logged_in && isset($_POST['logout'])) {
   session_unset();
@@ -30,75 +30,51 @@ if ($logged_in && isset($_POST['logout'])) {
 }
 
 function tryLogin($username, $password) {
-  global $error;
   $user = getUser($username);
   if ($user === false) {
-    $error = 'Access Denied';
+    $_SESSION['error'] = 'Access Denied';
     return; // no user
   }
   if (!password_verify($password, $user['password'])) {
-    $error = 'Access Denied';
+    $_SESSION['error'] = 'Access Denied';
     return; // wrong password
   }
   if ($user['active'] !== 1) {
-    $error = 'Access Denied';
+    $_SESSION['error'] = 'Access Denied';
     return; // user not active
   }
   $_SESSION['userid'] = $user['id'];
   $_SESSION['username'] = $user['username'];
+  header('location: /admin');
+  die();
 }
 
 function trySignup($username, $password, $repeat) {
-  global $error;
   if ($password !== $repeat) {
-    $error = 'Error: Passwords don\'t match';
+    $_SESSION['error'] = 'Error: Passwords don\'t match';
     return; // passwords dont match
   }
   if (strlen($password) < 8) {
-    $error = 'Error: Password too short';
+    $_SESSION['error'] = 'Error: Password too short';
     return; // password too short
   }
   if (!preg_match('/^[a-zA-Z0-9]*$/', $username)) {
-    $error = 'Error: Username not valid';
+    $_SESSION['error'] = 'Error: Username not valid';
     return; // username not valid
   }
   if (getUser($username) !== false) {
-    $error = 'Error: Username taken';
+    $_SESSION['error'] = 'Error: Username taken';
     return; // username already exists
   }
-  createUser($username, $password);
+  sql('INSERT INTO `users` (`username`, `password`) VALUES (?, ?);', 'ss',
+    $username, password_hash($password, PASSWORD_DEFAULT));
 }
 
 function getUser($username) {
-  global $conn, $error;
-  $sql = 'SELECT * FROM `users` WHERE `username` = ?;';
-  $stmt = mysqli_stmt_init($conn);
-  if (!mysqli_stmt_prepare($stmt, $sql)) {
-    $error = 'Error: Something went wrong';
-    return false; // failed
-  }
-  mysqli_stmt_bind_param($stmt, 's', $username);
-  mysqli_stmt_execute($stmt);
-  $result = mysqli_stmt_get_result($stmt);
-  $row = mysqli_fetch_assoc($result);
-  mysqli_stmt_close($stmt);
-  if ($row) {
-    return $row; // return user
+  $row = sql('SELECT * FROM `users` WHERE `username` = ?;', 's', $username);
+  if (count($row) > 0) {
+    return $row[0]; // return user
   } else {
     return false; // no user
   }
-}
-
-function createUser($username, $password) {
-  global $conn, $error;
-  $sql = 'INSERT INTO `users` (`username`, `password`) VALUES (?, ?);';
-  $stmt = mysqli_stmt_init($conn);
-  if (!mysqli_stmt_prepare($stmt, $sql)) {
-    $error = 'Error: Something went wrong';
-    return; // failed
-  }
-  $hashed = password_hash($password, PASSWORD_DEFAULT);
-  mysqli_stmt_bind_param($stmt, 'ss', $username, $hashed);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
 }
